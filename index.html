@@ -1021,7 +1021,7 @@ function renderCats() {
     <div class="cat-card${isAngel?' angel-card':''} fade-in" data-gender="${cat.gender}" data-type="${cat.type}" data-id="${cat.id}" onclick="toggleCard(this)">
       ${angelBadge}
       <div class="cat-photo-wrap">
-        <img class="cat-real-photo" src="photos/${cat.id}.jpg" onerror="this.style.display='none'" alt="${cat.pinyin}">
+        <img class="cat-real-photo" src="./${cat.id}.jpg" alt="${cat.pinyin}">
         <div class="cat-photo-placeholder">${cat.emoji}</div>
       </div>
       <div class="cat-body">
