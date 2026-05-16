@@ -333,11 +333,10 @@
     <img src="logo.png" alt="About H Logo" style="height: 28px; vertical-align: middle; margin-right: 6px;">
     About H
   </div>
-  <ul class="nav-center" id="nav-links">
-  <ul class="nav-center" id="nav-links">
-    <li><a href="#rules" data-key="nav_rules">店規</a></li>
-    <li><a href="#cats"  data-key="nav_cats">認識貓咪</a></li>
-  </ul>
+<ul class="nav-center" id="nav-links">
+  <li><a href="#rules" data-key="nav_rules">店規</a></li>
+  <li><a href="#cats" data-key="nav_cats">認識貓咪</a></li>
+</ul>
   <div class="lang-selector">
     <button class="lang-btn active" onclick="switchLang('zh')">🇹🇼中文</button>
     <button class="lang-btn"        onclick="switchLang('en')">EN</button>
@@ -361,7 +360,7 @@
 
 <!-- Rules -->
 <section id="rules">
-  <div class="section-title fade-in">
+  <div class="section-title visible">
     <h2 id="rules-title">📋 入店須知</h2>
     <p id="rules-sub">為了貓咪和所有客人的舒適，請遵守以下規定</p>
     <div class="divider">🐾</div>
@@ -384,7 +383,7 @@
     <p id="cats-sub">點擊卡片可以展開更多資訊，和牠們打個招呼吧！</p>
     <div class="divider">🐱</div>
   </div>
-  <div class="filter-bar fade-in" id="filter-bar"></div>
+  <div class="filter-bar visible" id="filter-bar"></div>
   <div class="cats-grid" id="cats-grid"></div>
 </section>
 
@@ -1126,13 +1125,8 @@ window.addEventListener('scroll', () => {
 });
 
 // Hero cat easter egg
-const heroCatEl = document.getElementById('hero-cat');
-const catEmojis = ['🐱','😺','😻','🙀','😽','🐈','🐈‍⬛','🐾'];
-let catIdx = 0;
-heroCatEl.addEventListener('click', () => {
-  catIdx = (catIdx + 1) % catEmojis.length;
-  heroCatEl.textContent = catEmojis[catIdx];
-  showToast(UI[currentLang].toast_msgs[catIdx]);
+window.addEventListener('DOMContentLoaded', () => {
+  switchLang('zh');
 });
 
 // Paw easter egg on click
