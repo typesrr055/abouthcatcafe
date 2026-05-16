@@ -7,13 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --cream:   #FDF6EC;
-      --warm:    #F5E6D3;
-      --caramel: #D4956A;
-      --mocha:   #8B5E3C;
-      --espresso:#4A2C1A;
-      --blush:   #F2C4A0;
+:root {
+      /* ─── 新色票：沉穩藍、暖木色、現代灰 ─── */
+      --cream:   #F9F9F9;   /* 原本的米白，改為：純淨白 (主底色) */
+      --warm:    #E0E0E0;   /* 原本的暖膚色，改為：清水模灰 (區塊背景) */
+      --caramel: #A68966;   /* 原本的焦糖色，改為：暖木色 (按鈕與強調色) */
+      --mocha:   #5687A8;   /* 原本的摩卡棕，改為：沉穩藍 (標題與品牌色) */
+      --espresso:#333333;   /* 原本的深咖啡，改為：碳黑色 (主要文字) */
+      --blush:   #D5DFE5;   /* 原本的粉色，改為：淡灰藍 (點綴色) */
+      
+      /* 以下保留你原本的變數以維持特定標籤顏色 */
       --mint:    #C8E6C9;
       --lavender:#E1D5F0;
       --pink:    #F8D7DA;
@@ -76,12 +79,13 @@
     .lang-btn:hover { background: var(--warm); }
     .lang-btn.active { background: var(--caramel); border-color: var(--caramel); color: #fff; }
 
-    /* ─── Hero ─── */
+ /* ─── Hero ─── */
     .hero {
       min-height: 100vh; display:flex; flex-direction:column;
       align-items:center; justify-content:center; text-align:center;
       padding: 6rem 2rem 4rem;
-      background: linear-gradient(160deg, var(--warm) 0%, var(--cream) 60%, #fff8f0 100%);
+      /* 將原本最後的 #fff8f0 替換成 #FFFFFF */
+      background: linear-gradient(160deg, var(--warm) 0%, var(--cream) 60%, #FFFFFF 100%);
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -325,7 +329,11 @@
 <div class="paw-float">🐾</div>
 
 <nav>
-  <div class="nav-logo">🐱 About H</div>
+  <div class="nav-logo">
+    <img src="logo.png" alt="About H Logo" style="height: 28px; vertical-align: middle; margin-right: 6px;">
+    About H
+  </div>
+  <ul class="nav-center" id="nav-links">
   <ul class="nav-center" id="nav-links">
     <li><a href="#rules" data-key="nav_rules">店規</a></li>
     <li><a href="#cats"  data-key="nav_cats">認識貓咪</a></li>
@@ -343,6 +351,7 @@
 
 <!-- Hero -->
 <section class="hero" id="home">
+  <img src="logo.png" alt="About H Logo" style="max-width: 140px; margin-bottom: 20px;">
   <div class="hero-emoji" id="hero-cat">🐱</div>
   <h1 id="hero-title">歡迎光臨 About H ☕</h1>
   <p id="hero-sub">在這裡您將與我們的毛孩們共度美好時光。<br/>麻煩先閱讀本手冊，讓大家都能開心相處！</p>
