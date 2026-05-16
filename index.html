@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>貓咖入店須知 🐾</title>
+  <title>About H ☕🐾</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* ─── 基礎 & 字型 ─── */
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
-
     :root {
       --cream:   #FDF6EC;
       --warm:    #F5E6D3;
@@ -21,1283 +20,1122 @@
       --gold:    #E8C547;
       --angel:   #B8D4FF;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Noto Sans TC', sans-serif;
+      font-family: 'Noto Sans TC', 'DM Sans', sans-serif;
       background: var(--cream);
       color: var(--espresso);
       overflow-x: hidden;
     }
+    body.lang-en { font-family: 'DM Sans', sans-serif; }
+    body.lang-ko { font-family: 'Noto Sans KR', sans-serif; }
+    body.lang-ja { font-family: 'Noto Sans JP', sans-serif; }
 
-    /* ─── 浮動貓爪裝飾 ─── */
+    /* ─── Floating paw decorations ─── */
     .paw-float {
-      position: fixed;
-      font-size: 1.5rem;
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: 0;
+      position: fixed; font-size: 1.5rem; opacity: 0.08;
+      pointer-events: none; z-index: 0;
       animation: float 8s ease-in-out infinite;
     }
-    .paw-float:nth-child(1) { top: 10%; left: 5%;  animation-delay: 0s; }
-    .paw-float:nth-child(2) { top: 30%; right: 4%; animation-delay: 2s; }
-    .paw-float:nth-child(3) { top: 55%; left: 8%;  animation-delay: 4s; }
-    .paw-float:nth-child(4) { top: 75%; right: 6%; animation-delay: 1s; }
-    .paw-float:nth-child(5) { top: 90%; left: 3%;  animation-delay: 3s; }
-
+    .paw-float:nth-child(1) { top:10%; left:5%;  animation-delay:0s; }
+    .paw-float:nth-child(2) { top:30%; right:4%; animation-delay:2s; }
+    .paw-float:nth-child(3) { top:55%; left:8%;  animation-delay:4s; }
+    .paw-float:nth-child(4) { top:75%; right:6%; animation-delay:1s; }
+    .paw-float:nth-child(5) { top:90%; left:3%;  animation-delay:3s; }
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-5deg); }
-      50%       { transform: translateY(-18px) rotate(5deg); }
+      0%,100% { transform: translateY(0) rotate(-5deg); }
+      50%      { transform: translateY(-18px) rotate(5deg); }
     }
 
-    /* ─── 頂部導覽 ─── */
+    /* ─── Nav ─── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
+      position: fixed; top:0; left:0; right:0; z-index:100;
       background: rgba(253,246,236,0.92);
       backdrop-filter: blur(8px);
       border-bottom: 2px solid var(--blush);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.7rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.65rem 2rem; gap: 1rem;
     }
-    .nav-logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--mocha);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
+    .nav-logo { font-size:1.3rem; font-weight:700; color:var(--mocha); white-space:nowrap; }
+    .nav-center { display:flex; gap:1.2rem; list-style:none; }
+    .nav-center a {
+      text-decoration:none; color:var(--mocha); font-size:0.88rem;
+      font-weight:500; padding:0.3rem 0.7rem; border-radius:20px; transition:all 0.2s;
     }
-    .nav-links {
-      display: flex;
-      gap: 1.4rem;
-      list-style: none;
+    .nav-center a:hover { background:var(--blush); color:var(--espresso); }
+
+    /* Language selector */
+    .lang-selector { display:flex; gap:0.3rem; flex-shrink:0; }
+    .lang-btn {
+      border: 1.5px solid var(--blush); background: transparent;
+      color: var(--mocha); border-radius: 20px; padding: 0.22rem 0.65rem;
+      font-size: 0.76rem; cursor: pointer; transition: all 0.2s; font-family: inherit;
+      white-space: nowrap;
     }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--mocha);
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.3rem 0.7rem;
-      border-radius: 20px;
-      transition: all 0.2s;
-    }
-    .nav-links a:hover {
-      background: var(--blush);
-      color: var(--espresso);
-    }
+    .lang-btn:hover { background: var(--warm); }
+    .lang-btn.active { background: var(--caramel); border-color: var(--caramel); color: #fff; }
 
     /* ─── Hero ─── */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      min-height: 100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; text-align:center;
       padding: 6rem 2rem 4rem;
       background: linear-gradient(160deg, var(--warm) 0%, var(--cream) 60%, #fff8f0 100%);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      width: 500px; height: 500px;
-      border-radius: 50%;
+      content:''; position:absolute; width:500px; height:500px; border-radius:50%;
       background: radial-gradient(circle, rgba(212,149,106,0.12) 0%, transparent 70%);
-      top: -100px; right: -100px;
+      top:-100px; right:-100px;
     }
     .hero-emoji {
-      font-size: 5rem;
-      animation: bounce 2s ease-in-out infinite;
-      cursor: pointer;
-      user-select: none;
+      font-size: 5rem; animation: bounce 2s ease-in-out infinite;
+      cursor:pointer; user-select:none;
     }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-12px); }
-    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
     .hero-emoji:hover { animation: spin-bounce 0.5s ease; }
     @keyframes spin-bounce {
-      0%   { transform: rotate(0deg) scale(1); }
-      50%  { transform: rotate(20deg) scale(1.2); }
-      100% { transform: rotate(0deg) scale(1); }
+      0%  {transform:rotate(0deg) scale(1)}
+      50% {transform:rotate(20deg) scale(1.2)}
+      100%{transform:rotate(0deg) scale(1)}
     }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      color: var(--mocha);
-      margin: 1rem 0 0.5rem;
-      line-height: 1.2;
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight:700;
+      color: var(--mocha); margin: 1rem 0 0.5rem; line-height:1.2;
     }
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--caramel);
-      max-width: 520px;
-      line-height: 1.8;
-    }
+    .hero p { font-size:1.05rem; color:var(--caramel); max-width:520px; line-height:1.85; }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--blush);
-      color: var(--espresso);
-      border-radius: 30px;
-      padding: 0.4rem 1.2rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-top: 1.2rem;
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:var(--blush); color:var(--espresso); border-radius:30px;
+      padding:0.4rem 1.2rem; font-size:0.85rem; font-weight:500; margin-top:1.2rem;
     }
     .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-      color: var(--caramel);
-      font-size: 0.8rem;
-      animation: bob 1.5s ease-in-out infinite;
+      position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:0.3rem;
+      color:var(--caramel); font-size:0.8rem; animation:bob 1.5s ease-in-out infinite;
     }
     @keyframes bob {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
+      0%,100%{transform:translateX(-50%) translateY(0)}
+      50%{transform:translateX(-50%) translateY(6px)}
     }
 
-    /* ─── Section wrapper ─── */
-    section { position: relative; z-index: 1; }
+    /* ─── Sections ─── */
+    section { position:relative; z-index:1; }
+    .section-title { text-align:center; padding:0 1rem 2.5rem; }
+    .section-title h2 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:700; color:var(--mocha); }
+    .section-title p { color:var(--caramel); margin-top:0.5rem; font-size:0.95rem; }
+    .divider { display:flex; align-items:center; justify-content:center; gap:0.8rem; margin:0.8rem 0 0; }
+    .divider::before,.divider::after { content:''; width:60px; height:2px; background:linear-gradient(90deg,transparent,var(--blush)); }
+    .divider::after { background:linear-gradient(90deg,var(--blush),transparent); }
 
-    .section-title {
-      text-align: center;
-      padding: 0 1rem 2.5rem;
-    }
-    .section-title h2 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      color: var(--mocha);
-    }
-    .section-title p {
-      color: var(--caramel);
-      margin-top: 0.5rem;
-      font-size: 0.95rem;
-    }
-    .divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-      margin: 0.8rem 0 0;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blush));
-    }
-    .divider::after { background: linear-gradient(90deg, var(--blush), transparent); }
-
-    /* ─── 規定區塊 ─── */
-    #rules {
-      padding: 5rem 2rem;
-      background: var(--warm);
-    }
+    /* ─── Rules ─── */
+    #rules { padding: 5rem 2rem; background: var(--warm); }
     .rules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.4rem;
-      max-width: 1100px;
-      margin: 0 auto;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.4rem; max-width:1100px; margin:0 auto;
     }
     .rule-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 1.6rem;
-      box-shadow: 0 4px 20px rgba(139,94,60,0.08);
-      border: 1.5px solid transparent;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      background:#fff; border-radius:20px; padding:1.6rem;
+      box-shadow:0 4px 20px rgba(139,94,60,0.08); border:1.5px solid transparent;
+      transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); cursor:pointer; position:relative; overflow:hidden;
     }
     .rule-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(212,149,106,0.05), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(212,149,106,0.05),transparent);
+      opacity:0; transition:opacity 0.3s;
     }
-    .rule-card:hover {
-      transform: translateY(-6px) scale(1.01);
-      border-color: var(--blush);
-      box-shadow: 0 10px 30px rgba(212,149,106,0.18);
-    }
-    .rule-card:hover::before { opacity: 1; }
+    .rule-card:hover { transform:translateY(-6px) scale(1.01); border-color:var(--blush); box-shadow:0 10px 30px rgba(212,149,106,0.18); }
+    .rule-card:hover::before { opacity:1; }
+    .rule-card.danger  { border-left:5px solid #E74C3C; }
+    .rule-card.warning { border-left:5px solid #F39C12; }
+    .rule-card.info    { border-left:5px solid var(--caramel); }
+    .rule-card.kind    { border-left:5px solid #27AE60; }
+    .rule-icon { font-size:2.2rem; display:inline-block; margin-bottom:0.7rem; transition:transform 0.3s; }
+    .rule-card:hover .rule-icon { transform:scale(1.25) rotate(8deg); }
+    .rule-card h3 { font-size:1.05rem; font-weight:700; color:var(--espresso); margin-bottom:0.5rem; }
+    .rule-card p { font-size:0.88rem; color:#666; line-height:1.8; }
+    .rule-tag { display:inline-block; font-size:0.72rem; font-weight:600; padding:0.15rem 0.6rem; border-radius:10px; margin-bottom:0.6rem; }
+    .rule-tag.danger  { background:#FEE; color:#C0392B; }
+    .rule-tag.warning { background:#FEF9E7; color:#E67E22; }
+    .rule-tag.info    { background:var(--blush); color:var(--mocha); }
+    .rule-tag.kind    { background:#EAFAF1; color:#1E8449; }
 
-    .rule-card.danger  { border-left: 5px solid #E74C3C; }
-    .rule-card.warning { border-left: 5px solid #F39C12; }
-    .rule-card.info    { border-left: 5px solid var(--caramel); }
-    .rule-card.kind    { border-left: 5px solid #27AE60; }
-
-    .rule-icon {
-      font-size: 2.2rem;
-      display: inline-block;
-      margin-bottom: 0.7rem;
-      transition: transform 0.3s;
-    }
-    .rule-card:hover .rule-icon { transform: scale(1.25) rotate(8deg); }
-
-    .rule-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--espresso);
-      margin-bottom: 0.5rem;
-    }
-    .rule-card p {
-      font-size: 0.88rem;
-      color: #666;
-      line-height: 1.8;
-    }
-    .rule-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.15rem 0.6rem;
-      border-radius: 10px;
-      margin-bottom: 0.6rem;
-    }
-    .rule-tag.danger  { background: #FEE; color: #C0392B; }
-    .rule-tag.warning { background: #FEF9E7; color: #E67E22; }
-    .rule-tag.info    { background: var(--blush); color: var(--mocha); }
-    .rule-tag.kind    { background: #EAFAF1; color: #1E8449; }
-
-    /* ─── 重要提示橫幅 ─── */
     .important-banner {
-      max-width: 800px;
-      margin: 2.5rem auto 0;
-      background: linear-gradient(135deg, var(--espresso), var(--mocha));
-      color: #fff;
-      border-radius: 18px;
-      padding: 1.4rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      box-shadow: 0 6px 24px rgba(74,44,26,0.25);
+      max-width:800px; margin:2.5rem auto 0;
+      background:linear-gradient(135deg,var(--espresso),var(--mocha));
+      color:#fff; border-radius:18px; padding:1.4rem 2rem;
+      display:flex; align-items:center; gap:1rem;
+      box-shadow:0 6px 24px rgba(74,44,26,0.25);
     }
-    .important-banner .big-icon { font-size: 2rem; flex-shrink: 0; }
-    .important-banner p { font-size: 0.9rem; line-height: 1.8; opacity: 0.95; }
+    .important-banner .big-icon { font-size:2rem; flex-shrink:0; }
+    .important-banner p { font-size:0.9rem; line-height:1.8; opacity:0.95; }
+    .important-banner strong { color:var(--blush); }
 
-    /* ─── 貓咪區 ─── */
-    #cats {
-      padding: 5rem 2rem;
-      background: var(--cream);
-    }
-
-    /* 篩選按鈕 */
+    /* ─── Cats ─── */
+    #cats { padding: 5rem 2rem; background: var(--cream); }
     .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
+      display:flex; flex-wrap:wrap; justify-content:center;
+      gap:0.6rem; max-width:700px; margin:0 auto 2.5rem;
     }
     .filter-btn {
-      border: 2px solid var(--blush);
-      background: #fff;
-      color: var(--mocha);
-      border-radius: 25px;
-      padding: 0.35rem 1.1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.22s;
-      font-family: inherit;
+      border:2px solid var(--blush); background:#fff; color:var(--mocha);
+      border-radius:25px; padding:0.35rem 1.1rem; font-size:0.85rem;
+      font-weight:500; cursor:pointer; transition:all 0.22s; font-family:inherit;
     }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--caramel);
-      border-color: var(--caramel);
-      color: #fff;
-    }
-
-    /* 貓咪卡片網格 */
+    .filter-btn:hover, .filter-btn.active { background:var(--caramel); border-color:var(--caramel); color:#fff; }
     .cats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.8rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:1.8rem; max-width:1200px; margin:0 auto;
     }
-
     .cat-card {
-      background: #fff;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(139,94,60,0.09);
-      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: pointer;
-      position: relative;
+      background:#fff; border-radius:24px; overflow:hidden;
+      box-shadow:0 4px 20px rgba(139,94,60,0.09);
+      transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); cursor:pointer; position:relative;
     }
-    .cat-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(139,94,60,0.18);
-    }
-
-    /* 天使卡 */
-    .cat-card.angel-card {
-      background: linear-gradient(135deg, #EFF6FF, #FFF5FB);
-      border: 2px solid var(--angel);
-    }
+    .cat-card:hover { transform:translateY(-8px); box-shadow:0 16px 40px rgba(139,94,60,0.18); }
+    .cat-card.angel-card { background:linear-gradient(135deg,#EFF6FF,#FFF5FB); border:2px solid var(--angel); }
     .angel-badge {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: linear-gradient(135deg, #93C5FD, #C4B5FD);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.2rem 0.7rem;
-      border-radius: 10px;
-      z-index: 2;
+      position:absolute; top:1rem; right:1rem; z-index:5;
+      background:linear-gradient(135deg,#93C5FD,#C4B5FD); color:#fff;
+      font-size:0.72rem; font-weight:700; padding:0.2rem 0.7rem; border-radius:10px;
     }
 
-    .cat-header {
-      background: linear-gradient(135deg, var(--warm), var(--blush));
-      padding: 2.2rem 1.5rem 1.5rem;
-      display: flex;
-      align-items: flex-end;
-      gap: 1.2rem;
-      position: relative;
-      overflow: hidden;
+    /* Photo area */
+    .cat-photo-wrap {
+      position:relative; height:180px; overflow:hidden;
+      background:linear-gradient(135deg,var(--warm),var(--blush));
     }
-    .cat-header::after {
-      content: '';
-      position: absolute;
-      bottom: -20px; right: -20px;
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
+    .cat-real-photo {
+      width:100%; height:100%; object-fit:cover;
+      position:absolute; inset:0; z-index:2;
+      transition: opacity 0.3s;
     }
-
-    .cat-avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.6rem;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-      flex-shrink: 0;
-      transition: transform 0.3s;
-      position: relative;
-      z-index: 1;
+    .cat-photo-placeholder {
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:5rem; z-index:1;
     }
-    .cat-card:hover .cat-avatar { transform: scale(1.12) rotate(-5deg); }
-
-    .cat-header-info { flex: 1; position: relative; z-index: 1; }
-    .cat-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--espresso);
-    }
-    .cat-meta {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.3rem;
-    }
-    .cat-tag {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.15rem 0.6rem;
-      border-radius: 8px;
-    }
-    .tag-female { background: #FFE4F0; color: #C2185B; }
-    .tag-male   { background: #E3F2FD; color: #1565C0; }
-    .tag-date   { background: rgba(255,255,255,0.7); color: var(--mocha); }
-    .tag-caution { background: #FFF3E0; color: #E65100; }
-    .tag-friendly { background: #E8F5E9; color: #2E7D32; }
-    .tag-angel   { background: var(--angel); color: #1e40af; }
-    .tag-airtag  { background: #E8EAF6; color: #283593; }
 
     .cat-body { padding: 1.4rem 1.6rem 1.6rem; }
-
-    /* 翻轉展開特性 */
-    .cat-traits {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-bottom: 1rem;
-    }
+    .cat-name-row { display:flex; align-items:baseline; gap:0.5rem; margin-bottom:0.4rem; }
+    .cat-pinyin { font-size:1.4rem; font-weight:700; color:var(--espresso); }
+    .cat-hanzi { font-size:0.9rem; color:var(--caramel); font-weight:500; }
+    .cat-meta { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.8rem; }
+    .cat-tag { font-size:0.72rem; font-weight:600; padding:0.15rem 0.6rem; border-radius:8px; }
+    .tag-female   { background:#FFE4F0; color:#C2185B; }
+    .tag-male     { background:#E3F2FD; color:#1565C0; }
+    .tag-date     { background:rgba(245,230,211,0.8); color:var(--mocha); }
+    .tag-caution  { background:#FFF3E0; color:#E65100; }
+    .tag-friendly { background:#E8F5E9; color:#2E7D32; }
+    .tag-angel    { background:var(--angel); color:#1e40af; }
+    .tag-airtag   { background:#E8EAF6; color:#283593; }
+    .cat-traits { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.9rem; }
     .trait-chip {
-      background: var(--warm);
-      color: var(--mocha);
-      font-size: 0.78rem;
-      padding: 0.2rem 0.65rem;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
+      background:var(--warm); color:var(--mocha); font-size:0.78rem;
+      padding:0.2rem 0.65rem; border-radius:12px;
     }
-
-    .cat-desc {
-      font-size: 0.88rem;
-      color: #666;
-      line-height: 1.85;
-      border-top: 1.5px dashed var(--blush);
-      padding-top: 0.9rem;
-    }
-    .cat-desc strong { color: var(--mocha); }
-
-    /* 貓咪注意事項 */
-    .cat-notes {
-      margin-top: 0.9rem;
-      background: #FFF8F3;
-      border-radius: 12px;
-      padding: 0.8rem 1rem;
-      font-size: 0.82rem;
-      color: #8B5E3C;
-      line-height: 1.75;
-      display: none;
-    }
-    .cat-card.expanded .cat-notes { display: block; }
-
-    .expand-btn {
-      width: 100%;
-      background: none;
-      border: 1.5px dashed var(--blush);
-      border-radius: 12px;
-      padding: 0.5rem;
-      color: var(--caramel);
-      font-size: 0.8rem;
-      font-family: inherit;
-      cursor: pointer;
-      margin-top: 0.8rem;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-    }
-    .expand-btn:hover {
-      background: var(--blush);
-      border-style: solid;
-      color: var(--espresso);
-    }
-    .expand-btn .arrow {
-      transition: transform 0.3s;
-      display: inline-block;
-    }
-    .cat-card.expanded .expand-btn .arrow { transform: rotate(180deg); }
-
-    /* 特徵標籤 */
     .feature-box {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.7rem;
-      background: var(--warm);
-      border-radius: 10px;
-      padding: 0.45rem 0.8rem;
-      font-size: 0.82rem;
-      color: var(--espresso);
+      display:flex; align-items:center; gap:0.5rem;
+      margin-bottom:0.8rem; background:var(--warm); border-radius:10px;
+      padding:0.45rem 0.8rem; font-size:0.82rem; color:var(--espresso);
     }
-    .feature-box .label { color: var(--caramel); font-weight: 600; }
+    .feature-box .label { color:var(--caramel); font-weight:600; white-space:nowrap; }
+    .cat-desc {
+      font-size:0.88rem; color:#666; line-height:1.85;
+      border-top:1.5px dashed var(--blush); padding-top:0.9rem;
+    }
+    .cat-desc strong { color:var(--mocha); }
+    .cat-notes {
+      margin-top:0.9rem; background:#FFF8F3; border-radius:12px;
+      padding:0.8rem 1rem; font-size:0.82rem; color:#8B5E3C; line-height:1.75; display:none;
+    }
+    .cat-card.expanded .cat-notes { display:block; }
+    .expand-btn {
+      width:100%; background:none; border:1.5px dashed var(--blush);
+      border-radius:12px; padding:0.5rem; color:var(--caramel);
+      font-size:0.8rem; font-family:inherit; cursor:pointer; margin-top:0.8rem;
+      transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:0.4rem;
+    }
+    .expand-btn:hover { background:var(--blush); border-style:solid; color:var(--espresso); }
+    .expand-btn .arrow { transition:transform 0.3s; display:inline-block; }
+    .cat-card.expanded .expand-btn .arrow { transform:rotate(180deg); }
 
-    /* ─── 彩蛋互動 ─── */
+    /* ─── Toast ─── */
+    .toast {
+      position:fixed; bottom:2rem; left:50%;
+      transform:translateX(-50%) translateY(100px);
+      background:var(--espresso); color:#fff; padding:0.7rem 1.5rem;
+      border-radius:30px; font-size:0.88rem; z-index:999;
+      transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1); white-space:nowrap;
+    }
+    .toast.show { transform:translateX(-50%) translateY(0); }
+
+    /* ─── Back-top ─── */
+    #back-top {
+      position:fixed; bottom:2rem; right:2rem; width:46px; height:46px;
+      background:var(--caramel); color:#fff; border:none; border-radius:50%;
+      font-size:1.3rem; cursor:pointer; box-shadow:0 4px 16px rgba(212,149,106,0.4);
+      display:flex; align-items:center; justify-content:center;
+      transition:all 0.3s; opacity:0; pointer-events:none; z-index:500;
+    }
+    #back-top.visible { opacity:1; pointer-events:auto; }
+    #back-top:hover { background:var(--mocha); transform:scale(1.1); }
+
+    /* ─── Paw cursor effect ─── */
     .paw-cursor {
-      position: fixed;
-      pointer-events: none;
-      font-size: 1.4rem;
-      z-index: 9999;
-      transition: none;
-      animation: popFade 0.8s ease forwards;
+      position:fixed; pointer-events:none; font-size:1.4rem;
+      z-index:9999; animation:popFade 0.8s ease forwards;
     }
     @keyframes popFade {
-      0%   { opacity: 1; transform: scale(0.5); }
-      50%  { opacity: 1; transform: scale(1.3); }
-      100% { opacity: 0; transform: scale(1) translateY(-20px); }
+      0%  { opacity:1; transform:scale(0.5); }
+      50% { opacity:1; transform:scale(1.3); }
+      100%{ opacity:0; transform:scale(1) translateY(-20px); }
     }
-
-    /* ─── 全域提示 ─── */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: var(--espresso);
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      border-radius: 30px;
-      font-size: 0.88rem;
-      z-index: 999;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      white-space: nowrap;
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); }
 
     /* ─── Footer ─── */
     footer {
-      background: var(--espresso);
-      color: rgba(255,255,255,0.7);
-      text-align: center;
-      padding: 2.5rem 2rem;
-      font-size: 0.85rem;
-      line-height: 2;
+      background:var(--espresso); color:rgba(255,255,255,0.7);
+      text-align:center; padding:2.5rem 2rem; font-size:0.85rem; line-height:2;
     }
-    footer strong { color: var(--blush); }
-    footer .hearts { font-size: 1.3rem; }
-
-    /* ─── 回頂部 ─── */
-    #back-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 46px; height: 46px;
-      background: var(--caramel);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(212,149,106,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 500;
-    }
-    #back-top.visible { opacity: 1; pointer-events: auto; }
-    #back-top:hover { background: var(--mocha); transform: scale(1.1); }
-
-    /* ─── 響應式 ─── */
-    @media (max-width: 600px) {
-      nav { padding: 0.6rem 1rem; }
-      .nav-links { gap: 0.6rem; }
-      .nav-links a { font-size: 0.78rem; padding: 0.25rem 0.5rem; }
-      .cats-grid { grid-template-columns: 1fr; }
-      .rules-grid { grid-template-columns: 1fr; }
-      .important-banner { flex-direction: column; text-align: center; }
-    }
+    footer strong { color:var(--blush); }
+    footer .hearts { font-size:1.3rem; }
 
     /* ─── Entrance animation ─── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .fade-in { opacity:0; transform:translateY(30px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── Responsive ─── */
+    @media (max-width:700px) {
+      nav { padding:0.6rem 1rem; flex-wrap:wrap; gap:0.5rem; }
+      .nav-center { display:none; }
+      .lang-btn { font-size:0.72rem; padding:0.18rem 0.5rem; }
+      .cats-grid { grid-template-columns:1fr; }
+      .rules-grid { grid-template-columns:1fr; }
+      .important-banner { flex-direction:column; text-align:center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 浮動裝飾 -->
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
-  <div class="paw-float">🐾</div>
+<div class="paw-float">🐾</div>
+<div class="paw-float">🐾</div>
+<div class="paw-float">🐾</div>
+<div class="paw-float">🐾</div>
+<div class="paw-float">🐾</div>
 
-  <!-- 導覽列 -->
-  <nav>
-    <div class="nav-logo">🐱 貓咖手冊</div>
-    <ul class="nav-links">
-      <li><a href="#rules">店規</a></li>
-      <li><a href="#cats">認識貓咪</a></li>
-    </ul>
-  </nav>
+<nav>
+  <div class="nav-logo">🐱 About H</div>
+  <ul class="nav-center" id="nav-links">
+    <li><a href="#rules" data-key="nav_rules">店規</a></li>
+    <li><a href="#cats"  data-key="nav_cats">認識貓咪</a></li>
+  </ul>
+  <div class="lang-selector">
+    <button class="lang-btn active" onclick="switchLang('zh')">🇹🇼中文</button>
+    <button class="lang-btn"        onclick="switchLang('en')">EN</button>
+    <button class="lang-btn"        onclick="switchLang('ko')">한국어</button>
+    <button class="lang-btn"        onclick="switchLang('ja')">日本語</button>
+  </div>
+</nav>
 
-  <!-- 全域 Toast -->
-  <div class="toast" id="toast"></div>
+<div class="toast" id="toast"></div>
+<button id="back-top" onclick="scrollTo({top:0,behavior:'smooth'})">🐾</button>
 
-  <!-- 回頂部 -->
-  <button id="back-top" onclick="scrollTo({top:0,behavior:'smooth'})">🐾</button>
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-emoji" id="hero-cat">🐱</div>
+  <h1 id="hero-title">歡迎光臨 About H ☕</h1>
+  <p id="hero-sub">在這裡您將與我們的毛孩們共度美好時光。<br/>麻煩先閱讀本手冊，讓大家都能開心相處！</p>
+  <div class="hero-badge" id="hero-badge">🐾 請先閱讀本手冊，謝謝您的配合 🐾</div>
+  <div class="scroll-hint"><span id="scroll-hint-text">往下滑</span><span>↓</span></div>
+</section>
 
-  <!-- ══ Hero ══ -->
-  <section class="hero" id="home">
-    <div class="hero-emoji" id="hero-cat">🐱</div>
-    <h1>歡迎光臨<br/>我們的貓咖☕</h1>
-    <p>在這裡您將與我們的毛孩們共度美好時光。<br/>麻煩先閱讀本手冊，讓大家都能開心相處！</p>
-    <div class="hero-badge">🐾 請先閱讀本手冊，謝謝您的配合 🐾</div>
-    <div class="scroll-hint">
-      <span>往下滑</span>
-      <span>↓</span>
-    </div>
-  </section>
+<!-- Rules -->
+<section id="rules">
+  <div class="section-title fade-in">
+    <h2 id="rules-title">📋 入店須知</h2>
+    <p id="rules-sub">為了貓咪和所有客人的舒適，請遵守以下規定</p>
+    <div class="divider">🐾</div>
+  </div>
+  <div class="rules-grid" id="rules-grid"></div>
+  <div class="important-banner fade-in" id="important-banner">
+    <div class="big-icon">⚠️</div>
+    <p id="banner-text"></p>
+  </div>
+</section>
 
-  <!-- ══ 店規 ══ -->
-  <section id="rules">
-    <div class="section-title fade-in">
-      <h2>📋 入店須知</h2>
-      <p>為了貓咪和所有客人的舒適，請遵守以下規定</p>
-      <div class="divider">🐾</div>
-    </div>
+<!-- Cats -->
+<section id="cats">
+  <div class="section-title fade-in">
+    <h2 id="cats-title">🐾 認識我們的毛孩們</h2>
+    <p id="cats-sub">點擊卡片可以展開更多資訊，和牠們打個招呼吧！</p>
+    <div class="divider">🐱</div>
+  </div>
+  <div class="filter-bar fade-in" id="filter-bar"></div>
+  <div class="cats-grid" id="cats-grid"></div>
+</section>
 
-    <div class="rules-grid">
+<!-- Footer -->
+<footer>
+  <div class="hearts">🐾 🐱 🐾</div>
+  <p id="footer-1">感謝您閱讀完入店須知</p>
+  <p id="footer-2">希望您和我們的毛孩們都能度過<strong>美好的時光</strong> ☕</p>
+  <p style="margin-top:1rem;font-size:0.78rem;opacity:0.5;" id="footer-3">如有任何問題，請隨時詢問夥伴們 🙏</p>
+</footer>
 
-      <div class="rule-card danger fade-in" onclick="ripple(this)">
-        <span class="rule-tag danger">🚫 嚴格禁止</span>
-        <div class="rule-icon">📸</div>
-        <h3>嚴禁閃光燈</h3>
-        <p>拍照請關閉閃光燈，保護貓咪的眼睛。<br/>謝謝您的體貼！</p>
+<script>
+/* ════════════════════════════════
+   TRANSLATIONS DATA
+════════════════════════════════ */
+const UI = {
+  zh: {
+    nav_rules:'店規', nav_cats:'認識貓咪',
+    hero_title:'歡迎光臨 About H ☕',
+    hero_sub:'在這裡您將與我們的毛孩們共度美好時光。\n麻煩先閱讀本手冊，讓大家都能開心相處！',
+    hero_badge:'🐾 請先閱讀本手冊，謝謝您的配合 🐾',
+    scroll_hint:'往下滑',
+    rules_title:'📋 入店須知',
+    rules_sub:'為了貓咪和所有客人的舒適，請遵守以下規定',
+    cats_title:'🐾 認識我們的毛孩們',
+    cats_sub:'點擊卡片可以展開更多資訊，和牠們打個招呼吧！',
+    filter_all:'全部 🐾', filter_female:'女生 🎀', filter_male:'男生 💙',
+    filter_friendly:'親人型 🥰', filter_caution:'需注意 ⚠️',
+    angel_badge:'🌟 永遠的天使',
+    tag_female:'♀ 女生', tag_male:'♂ 男生',
+    tag_friendly:'親人型', tag_caution:'需留意',
+    tag_airtag:'📍 AirTag', tag_angel:'天使',
+    label_feature:'特徵：',
+    expand_more:'查看更多', expand_less:'收起',
+    banner_text:'如因<strong>自身行為不當嚇到貓咪</strong>，或<strong>故意挑釁被貓咪抓傷</strong>，本店<strong>恕不負賠償責任</strong>。<br/>請尊重我們的小動物們，謝謝 🙏',
+    tag_danger:'🚫 嚴格禁止', tag_warning:'⚠️ 請注意',
+    tag_info:'💬 提示', tag_kind:'🌿 友善提示',
+    footer_1:'感謝您閱讀完入店須知',
+    footer_2:'希望您和我們的毛孩們都能度過美好的時光 ☕',
+    footer_3:'如有任何問題，請隨時詢問夥伴們 🙏',
+    toast_msgs:['喵～歡迎光臨！','請愛護我們的貓咪 🐾','謝謝你的到來 💕','記得看完須知唷！','今天也要開心～','貓咪想被摸摸 🥰','遵守規定大家都開心！','歡迎再來 ☕'],
+  },
+  en: {
+    nav_rules:'House Rules', nav_cats:'Meet the Cats',
+    hero_title:'Welcome to About H ☕',
+    hero_sub:'Come spend a cozy moment with our furry friends.\nPlease read through this guide so everyone can have a great time!',
+    hero_badge:'🐾 Please read our guide before you start — thank you! 🐾',
+    scroll_hint:'Scroll down',
+    rules_title:'📋 House Rules',
+    rules_sub:'To keep our cats and guests happy, please follow these guidelines',
+    cats_title:'🐾 Meet Our Cats',
+    cats_sub:'Tap a card to learn more and say hello!',
+    filter_all:'All 🐾', filter_female:'Girls 🎀', filter_male:'Boys 💙',
+    filter_friendly:'People-Friendly 🥰', filter_caution:'Handle with Care ⚠️',
+    angel_badge:'🌟 Our Forever Angel',
+    tag_female:'♀ Girl', tag_male:'♂ Boy',
+    tag_friendly:'Friendly', tag_caution:'Caution',
+    tag_airtag:'📍 AirTag', tag_angel:'Angel',
+    label_feature:'Feature: ',
+    expand_more:'Read more', expand_less:'Show less',
+    banner_text:'If you <strong>frighten a cat through careless behaviour</strong>, or <strong>provoke a cat and get scratched</strong>, the café <strong>cannot be held responsible</strong>.<br/>Please respect our animals — thank you 🙏',
+    tag_danger:'🚫 Strictly Forbidden', tag_warning:'⚠️ Please Note',
+    tag_info:'💬 Good to Know', tag_kind:'🌿 Friendly Tip',
+    footer_1:'Thank you for reading our house rules!',
+    footer_2:'We hope you and our cats have a wonderful time ☕',
+    footer_3:'Feel free to ask our staff anything 🙏',
+    toast_msgs:['Meow — welcome!','Please be gentle with our cats 🐾','Thanks for visiting 💕','Don\'t forget to read the rules!','Have a wonderful day～','A cat wants your attention 🥰','Follow the rules and everyone\'s happy!','Come again soon ☕'],
+  },
+  ko: {
+    nav_rules:'입장 안내', nav_cats:'고양이 소개',
+    hero_title:'About H에 오신 것을 환영합니다 ☕',
+    hero_sub:'소중한 고양이 친구들과 따뜻한 시간을 보내세요.\n모두가 즐거운 시간을 위해 안내문을 먼저 읽어주세요!',
+    hero_badge:'🐾 입장 전 안내문을 읽어주세요, 감사합니다 🐾',
+    scroll_hint:'아래로 스크롤',
+    rules_title:'📋 입장 안내',
+    rules_sub:'고양이와 손님 모두의 편안함을 위해 규칙을 지켜주세요',
+    cats_title:'🐾 우리 고양이들을 만나보세요',
+    cats_sub:'카드를 탭하면 더 많은 정보를 볼 수 있어요!',
+    filter_all:'전체 🐾', filter_female:'암컷 🎀', filter_male:'수컷 💙',
+    filter_friendly:'친화적 🥰', filter_caution:'주의 필요 ⚠️',
+    angel_badge:'🌟 영원한 천사',
+    tag_female:'♀ 암컷', tag_male:'♂ 수컷',
+    tag_friendly:'친화적', tag_caution:'주의',
+    tag_airtag:'📍 AirTag', tag_angel:'천사',
+    label_feature:'특징: ',
+    expand_more:'더 보기', expand_less:'접기',
+    banner_text:'<strong>부적절한 행동으로 고양이를 놀라게 하거나</strong>, <strong>고의로 고양이를 자극하여 할퀸 경우</strong>, 카페는 <strong>책임을 지지 않습니다</strong>.<br/>동물들을 존중해 주세요, 감사합니다 🙏',
+    tag_danger:'🚫 엄격히 금지', tag_warning:'⚠️ 주의사항',
+    tag_info:'💬 안내', tag_kind:'🌿 친절 안내',
+    footer_1:'안내문을 읽어주셔서 감사합니다!',
+    footer_2:'고양이 친구들과 즐거운 시간 보내세요 ☕',
+    footer_3:'궁금한 점은 언제든지 직원에게 문의하세요 🙏',
+    toast_msgs:['야옹~ 어서오세요!','고양이를 예뻐해 주세요 🐾','방문해 주셔서 감사해요 💕','규칙을 꼭 읽어주세요!','오늘도 즐거운 하루 되세요～','고양이가 관심을 원해요 🥰','규칙을 지키면 모두가 행복해요!','또 방문해 주세요 ☕'],
+  },
+  ja: {
+    nav_rules:'ご入店案内', nav_cats:'猫たちの紹介',
+    hero_title:'About H へようこそ ☕',
+    hero_sub:'かわいい猫たちとのひとときをお楽しみください。\nお入店前に、ぜひこちらの案内をお読みください！',
+    hero_badge:'🐾 ご入店前に案内をお読みください、よろしくお願いいたします 🐾',
+    scroll_hint:'スクロールしてください',
+    rules_title:'📋 ご入店案内',
+    rules_sub:'猫たちとお客様が快適に過ごせるよう、ルールをお守りください',
+    cats_title:'🐾 猫たちのご紹介',
+    cats_sub:'カードをタップして詳しい情報をご覧ください！',
+    filter_all:'全員 🐾', filter_female:'女の子 🎀', filter_male:'男の子 💙',
+    filter_friendly:'人懐っこい 🥰', filter_caution:'要注意 ⚠️',
+    angel_badge:'🌟 永遠の天使',
+    tag_female:'♀ 女の子', tag_male:'♂ 男の子',
+    tag_friendly:'人懐っこい', tag_caution:'要注意',
+    tag_airtag:'📍 AirTag', tag_angel:'天使',
+    label_feature:'特徴：',
+    expand_more:'もっと見る', expand_less:'閉じる',
+    banner_text:'<strong>不適切な行動で猫を驚かせた場合</strong>や、<strong>故意に猫を挑発して引っかかれた場合</strong>、当店は<strong>責任を負いません</strong>。<br/>動物たちを尊重してください、よろしくお願いいたします 🙏',
+    tag_danger:'🚫 厳禁', tag_warning:'⚠️ ご注意',
+    tag_info:'💬 ご案内', tag_kind:'🌿 フレンドリーなヒント',
+    footer_1:'ご入店案内をお読みいただきありがとうございます！',
+    footer_2:'猫たちとの素敵なひとときをお楽しみください ☕',
+    footer_3:'ご不明な点はいつでもスタッフへお気軽にどうぞ 🙏',
+    toast_msgs:['にゃあ～ようこそ！','猫たちを大切にしてください 🐾','ご来店ありがとうございます 💕','ルールをお読みください！','素敵な一日をお過ごしください～','猫があなたを呼んでいます 🥰','ルールを守ればみんなが幸せ！','またのご来店をお待ちしています ☕'],
+  }
+};
+
+const RULES = [
+  {
+    type:'danger', icon:'📸',
+    zh:{ title:'嚴禁閃光燈', desc:'拍照請關閉閃光燈，保護貓咪的眼睛。\n謝謝您的體貼！' },
+    en:{ title:'No Flash Photography', desc:'Please turn off your flash before taking photos.\nIt protects the cats\' eyes — thank you!' },
+    ko:{ title:'플래시 촬영 금지', desc:'사진 촬영 시 플래시를 꺼주세요.\n고양이의 눈을 보호해 주세요!' },
+    ja:{ title:'フラッシュ撮影禁止', desc:'撮影の際はフラッシュをオフにしてください。\n猫の目を守るためにご協力をお願いします！' },
+  },
+  {
+    type:'danger', icon:'🧴',
+    zh:{ title:'嚴禁防蚊液 / 太重香水', desc:'如有使用防蚊液或濃郁香水，\n請至戶外用餐，以免影響貓咪。' },
+    en:{ title:'No Insect Repellent / Heavy Perfume', desc:'If you\'ve applied insect repellent or strong perfume,\nplease dine outside to protect the cats.' },
+    ko:{ title:'방충제 / 진한 향수 금지', desc:'방충제나 진한 향수를 사용하셨다면,\n고양이에게 영향을 줄 수 있으므로 야외 좌석을 이용해 주세요.' },
+    ja:{ title:'虫除けスプレー・強い香水の持ち込み禁止', desc:'虫除けや強い香水を使用されている方は、\n猫への影響を避けるため、屋外席のご利用をお願いします。' },
+  },
+  {
+    type:'warning', icon:'🤗',
+    zh:{ title:'嚴禁強行抱貓', desc:'每隻貓咪都有自己的個性。\n除非貓咪主動靠近，否則請勿強行抱起。' },
+    en:{ title:'No Forcing Cats to Be Held', desc:'Every cat has its own personality.\nPlease only hold a cat if it approaches you first.' },
+    ko:{ title:'강제로 고양이 안기 금지', desc:'모든 고양이는 각자의 성격이 있습니다.\n고양이가 먼저 다가올 때만 안아주세요.' },
+    ja:{ title:'無理やり抱っこしないでください', desc:'猫にはそれぞれ個性があります。\n猫が自ら近づいてきたときのみ抱っこしてください。' },
+  },
+  {
+    type:'warning', icon:'🙅',
+    zh:{ title:'禁止摸肚子 & 捏爪子', desc:'請溫柔互動，不要摸肚子或捏爪子。\n拍屁屁方式請詢問店員！' },
+    en:{ title:'No Touching Bellies or Squeezing Paws', desc:'Please interact gently — avoid the belly and paws.\nAsk our staff about the best petting spots!' },
+    ko:{ title:'배와 발톱 만지기 금지', desc:'부드럽게 교류해 주세요. 배나 발톱은 만지지 마세요.\n쓰다듬는 방법은 직원에게 물어봐 주세요!' },
+    ja:{ title:'お腹や爪を触らないでください', desc:'優しくふれあってください。お腹や爪への接触はご遠慮ください。\nなでる場所についてはスタッフにお聞きください！' },
+  },
+  {
+    type:'info', icon:'🎣',
+    zh:{ title:'本店不提供逗貓棒', desc:'想和貓咪互動？可請店員協助引導，\n夥伴們都很樂意幫忙 🐾' },
+    en:{ title:'No Cat Wands Provided', desc:'Want to play with the cats? Ask a staff member — \nwe\'re always happy to help 🐾' },
+    ko:{ title:'낚시대 장난감 제공 없음', desc:'고양이와 놀고 싶다면 직원에게 도움을 요청하세요.\n언제든지 기꺼이 도와드릴게요 🐾' },
+    ja:{ title:'猫じゃらしのご提供はありません', desc:'猫と遊びたい方はスタッフにお声がけください。\nいつでも喜んでお手伝いします 🐾' },
+  },
+  {
+    type:'info', icon:'📱',
+    zh:{ title:'入座前請看 Instagram 精選動態', desc:'請先觀看 IG 精選動態中的「入店須知」\n並閱讀本手冊，不聽勸者請至戶外。' },
+    en:{ title:'Check Our Instagram Highlights First', desc:'Please view the "House Rules" story highlight on our IG\nand read this guide before sitting down.' },
+    ko:{ title:'입장 전 Instagram 하이라이트 확인', desc:'Instagram 하이라이트의 "입장 안내"를 먼저 확인하고\n이 안내문을 읽어주세요.' },
+    ja:{ title:'着席前にInstagramのハイライトをご覧ください', desc:'Instagramの「ご入店案内」ハイライトをご覧いただいた上で、\nこちらの案内をお読みください。' },
+  },
+  {
+    type:'warning', icon:'👶',
+    zh:{ title:'孩童請家長全程陪同', desc:'孩童與貓咪互動，家長務必在旁陪同。\n請勿讓孩童獨自與貓咪相處。' },
+    en:{ title:'Children Must Be Accompanied by Adults', desc:'Parents or guardians must stay with children\nduring all interactions with the cats.' },
+    ko:{ title:'어린이는 보호자와 함께', desc:'어린이가 고양이와 교류할 때는 반드시 보호자가 함께 있어야 합니다.\n어린이를 혼자 고양이와 두지 마세요.' },
+    ja:{ title:'お子様は保護者の方と一緒に', desc:'お子様と猫とのふれあいには、保護者の方が必ずそばにいてください。\nお子様だけで猫と過ごすことはお控えください。' },
+  },
+  {
+    type:'kind', icon:'🔈',
+    zh:{ title:'請注意音量', desc:'可以輕鬆聊天，但請避免大聲喧嘩，\n以免驚嚇到貓咪及影響其他客人。' },
+    en:{ title:'Please Keep Noise Down', desc:'Feel free to chat, but please avoid loud voices\nso as not to startle the cats or disturb other guests.' },
+    ko:{ title:'소음 주의', desc:'편안하게 대화할 수 있지만, 큰 소리는 자제해 주세요.\n고양이를 놀라게 하거나 다른 손님에게 방해가 될 수 있습니다.' },
+    ja:{ title:'お声のボリュームにご注意ください', desc:'リラックスしてお話しいただけますが、大きな声はお控えください。\n猫を驚かせたり、他のお客様のご迷惑になる場合があります。' },
+  },
+  {
+    type:'kind', icon:'🍰',
+    zh:{ title:'餐點可以客製', desc:'餐點有想調整的都可以直接告知夥伴，\n我們會盡力配合您的需求 ☕' },
+    en:{ title:'Customise Your Order', desc:'Feel free to ask our staff about modifying any menu item.\nWe\'ll do our best to accommodate you ☕' },
+    ko:{ title:'음료 커스터마이즈 가능', desc:'음료나 음식 조정이 필요하시면 직원에게 알려주세요.\n최대한 맞춰드리겠습니다 ☕' },
+    ja:{ title:'メニューのカスタマイズができます', desc:'メニューについてご要望がございましたら、スタッフにお気軽にお申し付けください。\nできる限りご対応いたします ☕' },
+  },
+];
+
+const CATS = [
+  {
+    id:'diandian', pinyin:'Diǎndiǎn', emoji:'🌸',
+    gender:'female', type:'friendly', angel:true, airtag:false,
+    zh:{
+      hanzi:'點點', date:'到職 2022/10/09', extraTag:'天使', feature:'最美白底花貓',
+      traits:['💕 溫馴','🍪 貪吃','🌸 愛撒嬌','🏔️ 愛看風景'],
+      desc:'H 的第一個寶貝。最喜歡 HAO，有點笨笨的超可愛。<br/><strong>心臟病發後去了貓星球</strong>，是我們永遠的小天使 💙<br/>在牆上能看到漂亮的點點，她永遠在我們心中。',
+      notes:'📌 點點雖然不在了，但她是我們店的靈魂。<br/>在牆上可以看到她最美的樣子，歡迎和她打個招呼 🌟',
+      greeting:'🌟 點點永遠在我們心中...',
+    },
+    en:{
+      hanzi:'（點點）', date:'Joined 2022/10/09', extraTag:'Angel', feature:'Most beautiful calico',
+      traits:['💕 Gentle','🍪 Foodie','🌸 Affectionate','🏔️ Loves the view'],
+      desc:'The very first baby of About H. She adored HAO and was adorably clumsy.<br/><strong>She passed away from heart disease</strong> and became our forever little angel 💙<br/>You can find her beautiful portrait on our wall.',
+      notes:'📌 Though she\'s no longer with us, Diǎndiǎn is the soul of our café.<br/>Say hello to her on the wall — she\'s always watching over us 🌟',
+      greeting:'🌟 Diǎndiǎn — forever in our hearts...',
+    },
+    ko:{
+      hanzi:'（點點）', date:'입사 2022/10/09', extraTag:'천사', feature:'가장 아름다운 삼색 고양이',
+      traits:['💕 온순함','🍪 먹보','🌸 애교쟁이','🏔️ 경치 감상 좋아함'],
+      desc:'About H의 첫 번째 아기 고양이. HAO를 가장 좋아했고, 약간 엉뚱해서 너무 귀여웠어요.<br/><strong>심장병으로 무지개다리를 건넜습니다</strong>. 우리의 영원한 작은 천사 💙<br/>벽에서 아름다운 Diǎndiǎn의 사진을 볼 수 있어요.',
+      notes:'📌 비록 곁에 없지만 Diǎndiǎn은 우리 카페의 영혼입니다.<br/>벽에서 가장 아름다운 모습으로 항상 함께하고 있어요 🌟',
+      greeting:'🌟 Diǎndiǎn은 영원히 우리 마음속에...',
+    },
+    ja:{
+      hanzi:'（點點）', date:'就職 2022/10/09', extraTag:'天使', feature:'最も美しい三毛猫',
+      traits:['💕 おとなしい','🍪 食いしん坊','🌸 甘えん坊','🏔️ 景色を眺めるのが好き'],
+      desc:'About H 最初の子。HAO が大好きで、ちょっとおっちょこちょいなのがとてもかわいかったです。<br/><strong>心臓病でお空へ旅立ちました</strong>。永遠に私たちの小さな天使 💙<br/>壁に飾られた美しい Diǎndiǎn の写真をご覧ください。',
+      notes:'📌 もういませんが、Diǎndiǎn はこのカフェの魂です。<br/>壁で一番美しい姿を見ることができます。ぜひご挨拶してください 🌟',
+      greeting:'🌟 Diǎndiǎn — いつまでも心の中に...',
+    },
+  },
+  {
+    id:'naijing', pinyin:'Nǎijīng', emoji:'🤍',
+    gender:'female', type:'friendly', angel:false, airtag:false,
+    zh:{
+      hanzi:'奶精', date:'到職 2023/03/06', extraTag:'', feature:'背後有一戳白毛',
+      traits:['💕 溫馴','🍪 貪吃','🌸 愛撒嬌','👖 喜歡牛仔褲'],
+      desc:'沒有地雷的愛撒嬌寶寶 🫶<br/>有個親姊妹叫<strong>二號</strong>，喜歡和店員玩逗貓棒。<br/>有需求或想玩的時候會咬尾巴做「假狩獵」。',
+      notes:'💡 拍屁屁好讚！可以輕拍她的屁屁，她很享受。<br/>💡 夥伴結束手邊工作都會陪她玩喔 🎉',
+      greeting:'奶精：摸我拍屁屁！💕',
+    },
+    en:{
+      hanzi:'', date:'Joined 2023/03/06', extraTag:'', feature:'White patch on her back',
+      traits:['💕 Gentle','🍪 Foodie','🌸 Affectionate','👖 Loves denim'],
+      desc:'A sweetheart with no bad spots — pure love 🫶<br/>She has a real sister named <strong>Èr Hào</strong> and loves playing with the staff.<br/>When she wants attention, she "fake-hunts" her own tail.',
+      notes:'💡 She LOVES gentle pats on the bum — give it a try!<br/>💡 Staff will play with her when they\'re free 🎉',
+      greeting:'Nǎijīng: pet my bum! 💕',
+    },
+    ko:{
+      hanzi:'', date:'입사 2023/03/06', extraTag:'', feature:'등에 흰 털이 있음',
+      traits:['💕 온순함','🍪 먹보','🌸 애교쟁이','👖 청바지 좋아함'],
+      desc:'지뢰가 전혀 없는 애교쟁이 아기 고양이 🫶<br/>친자매인 <strong>Èr Hào</strong>가 있고, 직원들과 노는 것을 좋아해요.<br/>관심이 필요할 때 자신의 꼬리를 "가짜 사냥"해요.',
+      notes:'💡 엉덩이를 살살 두드려 주면 너무 좋아해요!<br/>💡 직원들이 시간 날 때마다 함께 놀아줘요 🎉',
+      greeting:'Nǎijīng: 엉덩이 쓰다듬어 줘요! 💕',
+    },
+    ja:{
+      hanzi:'', date:'就職 2023/03/06', extraTag:'', feature:'背中に白い毛のかたまりがある',
+      traits:['💕 おとなしい','🍪 食いしん坊','🌸 甘えん坊','👖 デニムが好き'],
+      desc:'地雷がなく、甘えん坊の子です 🫶<br/>本当の妹に <strong>Èr Hào</strong> がいて、スタッフと遊ぶのが大好き。<br/>かまってほしいとき、自分のしっぽを「フェイクハント」します。',
+      notes:'💡 お尻をそっとたたくのが大好きです — ぜひ試してみてください！<br/>💡 スタッフが手が空いたときに一緒に遊びます 🎉',
+      greeting:'Nǎijīng：お尻なでなでして！💕',
+    },
+  },
+  {
+    id:'erhao', pinyin:'Èr Hào', emoji:'💧',
+    gender:'female', type:'caution', angel:false, airtag:false,
+    zh:{
+      hanzi:'二號', date:'到職 2023/03/06', extraTag:'', feature:'尾巴末端有個白點點',
+      traits:['💕 溫馴','🎲 調皮','💧 愛玩水','✂️ 愛梳毛'],
+      desc:'喜歡玩水的調皮蛋 🫶<br/>有個親姊妹叫<strong>奶精</strong>。<br/>因為不能玩水有點焦慮會舔毛，目前使用環境和口服費洛蒙治療中。',
+      notes:'⚠️ 因為焦慮舔毛，請不要用水相關的東西逗弄她。<br/>💊 正在治療中，請溫柔對待她 💗',
+      greeting:'二號：最愛玩水啦～💧',
+    },
+    en:{
+      hanzi:'', date:'Joined 2023/03/06', extraTag:'', feature:'White dot at the tip of her tail',
+      traits:['💕 Gentle','🎲 Playful','💧 Loves water','✂️ Loves grooming'],
+      desc:'A little mischief-maker who loves water 🫶<br/>She has a real sister named <strong>Nǎijīng</strong>.<br/>She gets anxious and over-grooms when she can\'t play with water — currently in treatment.',
+      notes:'⚠️ Please don\'t tease her with anything water-related (it triggers her anxiety).<br/>💊 She\'s receiving treatment — please be extra gentle with her 💗',
+      greeting:'Èr Hào: I love water～ 💧',
+    },
+    ko:{
+      hanzi:'', date:'입사 2023/03/06', extraTag:'', feature:'꼬리 끝에 흰 점이 있음',
+      traits:['💕 온순함','🎲 장난꾸러기','💧 물 좋아함','✂️ 그루밍 좋아함'],
+      desc:'물을 좋아하는 장난꾸러기 고양이 🫶<br/>친자매인 <strong>Nǎijīng</strong>이 있어요.<br/>물놀이를 못 하면 불안해서 과도하게 털을 핥아요. 현재 치료 중이에요.',
+      notes:'⚠️ 불안을 유발할 수 있으니 물과 관련된 것으로 놀리지 마세요.<br/>💊 치료 중이니 부드럽게 대해주세요 💗',
+      greeting:'Èr Hào: 물놀이 최고～ 💧',
+    },
+    ja:{
+      hanzi:'', date:'就職 2023/03/06', extraTag:'', feature:'しっぽの先端に白い点がある',
+      traits:['💕 おとなしい','🎲 やんちゃ','💧 水遊びが好き','✂️ グルーミングが好き'],
+      desc:'水が大好きなやんちゃな子です 🫶<br/>本当の姉妹に <strong>Nǎijīng</strong> がいます。<br/>水遊びができないと不安になり、過度にグルーミングをします。現在治療中。',
+      notes:'⚠️ 不安を引き起こすため、水に関するもので遊ばせないでください。<br/>💊 治療中ですので、優しく接してあげてください 💗',
+      greeting:'Èr Hào：水遊びが一番～ 💧',
+    },
+  },
+  {
+    id:'huahua', pinyin:'Huāhuā', emoji:'🌺',
+    gender:'female', type:'caution', angel:false, airtag:false,
+    zh:{
+      hanzi:'花花', date:'到職 2023/03/06', extraTag:'', feature:'臉上有個三八痣',
+      traits:['😬 容易緊張','🍪 愛吃','👦 超喜歡男生'],
+      desc:'喜歡進進出出休息室的小女生。<br/>跟奶精和二號同時間來，但不是親姊妹。<br/>特別喜歡<strong>男生</strong>，超喜歡輕輕拍屁屁。',
+      notes:'💡 她容易緊張，請動作放輕，讓她先適應再互動。<br/>💡 輕輕拍屁屁她超愛，男生朋友可以試試 😄',
+      greeting:'花花：男生男生快來！😳',
+    },
+    en:{
+      hanzi:'', date:'Joined 2023/03/06', extraTag:'', feature:'Cute mole on her face',
+      traits:['😬 Easily startled','🍪 Loves food','👦 Adores guys'],
+      desc:'A little lady who loves wandering in and out of the break room.<br/>She arrived at the same time as Nǎijīng and Èr Hào, but they\'re not related.<br/>She has a special fondness for <strong>men</strong> and loves gentle bum pats.',
+      notes:'💡 She startles easily — move slowly and let her approach you first.<br/>💡 Guys: a gentle pat on the bum will make her day 😄',
+      greeting:'Huāhuā: guys, come over! 😳',
+    },
+    ko:{
+      hanzi:'', date:'입사 2023/03/06', extraTag:'', feature:'얼굴에 귀여운 점이 있음',
+      traits:['😬 잘 긴장함','🍪 먹는 것 좋아함','👦 남자 너무 좋아함'],
+      desc:'휴게실을 자주 드나드는 소녀 고양이예요.<br/>Nǎijīng, Èr Hào와 같은 시기에 왔지만 친자매는 아니에요.<br/><strong>남성</strong>을 특히 좋아하고, 엉덩이를 살살 두드려 주는 것을 엄청 좋아해요.',
+      notes:'💡 잘 긴장하니 천천히 움직이고 고양이가 먼저 다가오도록 해주세요.<br/>💡 남성분들, 엉덩이를 살살 두드려 주면 엄청 좋아해요 😄',
+      greeting:'Huāhuā: 남자분들 이리 와요! 😳',
+    },
+    ja:{
+      hanzi:'', date:'就職 2023/03/06', extraTag:'', feature:'顔にかわいいほくろがある',
+      traits:['😬 驚きやすい','🍪 食べるのが好き','👦 男性が大好き'],
+      desc:'休憩室を行ったり来たりするのが好きな女の子です。<br/>Nǎijīng・Èr Hào と同じ時期に来ましたが、血はつながっていません。<br/><strong>男性</strong>が特に好きで、お尻をそっとたたかれるのが大好きです。',
+      notes:'💡 驚きやすいので、ゆっくり動いて猫から近づいてくるのを待ってください。<br/>💡 男性の方：お尻をそっとたたくと大喜びします 😄',
+      greeting:'Huāhuā：男性の方、来て来て！😳',
+    },
+  },
+  {
+    id:'wangwang', pinyin:'Wāngwāng', emoji:'🟠',
+    gender:'male', type:'friendly', angel:false, airtag:true,
+    zh:{
+      hanzi:'汪汪', date:'生日 2017/05', extraTag:'', feature:'獨眼橘貓（有 AirTag）',
+      traits:['😴 溫順愛睡','☀️ 愛曬太陽','🍖 挑食橘貓','👇 愛搔下巴'],
+      desc:'闆娘大學時期領養的，跟<strong>脫窗</strong>一起長大。<br/>小時候流浪，眼睛感染後拿掉了一隻眼睛。<br/>雖然獨眼，但依然是最帥的橘貓 🧡',
+      notes:'💡 喜歡被搔下巴，可以試試！<br/>📍 身上有 AirTag 方便尋找他的位置。',
+      greeting:'汪汪：搔我下巴🧡',
+    },
+    en:{
+      hanzi:'', date:'Born 2017/05', extraTag:'', feature:'One-eyed ginger (has AirTag)',
+      traits:['😴 Calm & sleepy','☀️ Loves sunbathing','🍖 Picky eater','👇 Loves chin scratches'],
+      desc:'Adopted by the owner during college, he grew up with <strong>Tuōchuāng</strong>.<br/>He was a stray as a kitten and lost one eye to infection.<br/>One-eyed but still the most handsome ginger cat 🧡',
+      notes:'💡 He loves chin scratches — give it a try!<br/>📍 He wears an AirTag so we can always find him.',
+      greeting:'Wāngwāng: scratch my chin 🧡',
+    },
+    ko:{
+      hanzi:'', date:'생일 2017/05', extraTag:'', feature:'한쪽 눈 주황 고양이 (AirTag 착용)',
+      traits:['😴 온순하고 잠꾸러기','☀️ 일광욕 좋아함','🍖 편식하는 주황이','👇 턱 긁기 좋아함'],
+      desc:'사장님이 대학 시절 입양했고, <strong>Tuōchuāng</strong>과 함께 자랐어요.<br/>어렸을 때 길고양이였고, 눈 감염으로 한쪽 눈을 잃었어요.<br/>한쪽 눈이지만 여전히 가장 멋진 주황 고양이 🧡',
+      notes:'💡 턱 긁기를 엄청 좋아해요 — 한번 해보세요!<br/>📍 위치 파악을 위해 AirTag를 달고 있어요.',
+      greeting:'Wāngwāng: 턱 긁어줘 🧡',
+    },
+    ja:{
+      hanzi:'', date:'誕生日 2017/05', extraTag:'', feature:'一つ目のキジトラ（AirTag装着）',
+      traits:['😴 穏やかで眠り好き','☀️ 日向ぼっこが好き','🍖 好き嫌いの多い橙猫','👇 あご撫でが大好き'],
+      desc:'オーナーが大学時代に引き取り、<strong>Tuōchuāng</strong> と一緒に育ちました。<br/>子猫の頃は野良猫で、目の感染症で片目を失いました。<br/>片目でも、一番かっこいいキジトラです 🧡',
+      notes:'💡 あごを撫でるのが大好きです — ぜひ試してみてください！<br/>📍 位置確認のためAirTagをつけています。',
+      greeting:'Wāngwāng：あごを撫でてください 🧡',
+    },
+  },
+  {
+    id:'tuochuang', pinyin:'Tuōchuāng', emoji:'👀',
+    gender:'female', type:'caution', angel:false, airtag:false,
+    zh:{
+      hanzi:'脫窗', date:'生日 2018/04', extraTag:'', feature:'鬥雞眼白底虎斑',
+      traits:['😰 膽小溫順','👁️ 鬥雞眼','🤔 視力不清'],
+      desc:'闆娘大學時期領養的，跟<strong>汪汪</strong>一起長大。<br/>小時候流浪眼睛生病，變成鬥雞眼。<br/>眼睛看不清楚，容易緊張。',
+      notes:'⚠️ 只喜歡被摸頭，碰其他地方會生氣揮拳！<br/>⚠️ 請不要隨意觸碰頭部以外的地方，否則她會不開心 🥊',
+      greeting:'脫窗：只能摸頭！👊',
+    },
+    en:{
+      hanzi:'', date:'Born 2018/04', extraTag:'', feature:'Cross-eyed white tabby',
+      traits:['😰 Timid & gentle','👁️ Cross-eyed','🤔 Poor eyesight'],
+      desc:'Also adopted by the owner during college, she grew up with <strong>Wāngwāng</strong>.<br/>She was a stray and developed cross-eyes from an eye illness.<br/>Her poor eyesight makes her easily startled.',
+      notes:'⚠️ She only likes head scratches — touching anywhere else will get you bopped!<br/>⚠️ Please stick to petting her head only 🥊',
+      greeting:'Tuōchuāng: head only! 👊',
+    },
+    ko:{
+      hanzi:'', date:'생일 2018/04', extraTag:'', feature:'사시 흰 줄무늬 고양이',
+      traits:['😰 겁쟁이지만 온순함','👁️ 사팔뜨기','🤔 시력이 좋지 않음'],
+      desc:'사장님이 대학 시절 입양했고 <strong>Wāngwāng</strong>과 함께 자랐어요.<br/>어렸을 때 길고양이였고 눈 질환으로 사팔뜨기가 됐어요.<br/>시력이 좋지 않아 쉽게 놀라요.',
+      notes:'⚠️ 머리만 쓰다듬기를 좋아해요. 다른 곳을 만지면 주먹이 날아와요!<br/>⚠️ 머리 부분만 쓰다듬어 주세요 🥊',
+      greeting:'Tuōchuāng: 머리만! 👊',
+    },
+    ja:{
+      hanzi:'', date:'誕生日 2018/04', extraTag:'', feature:'斜視の白いキジトラ',
+      traits:['😰 臆病でおとなしい','👁️ 斜視','🤔 視力が弱い'],
+      desc:'オーナーが大学時代に引き取り、<strong>Wāngwāng</strong> と一緒に育ちました。<br/>野良猫だった頃に目の病気で斜視になりました。<br/>視力が弱いため、驚きやすい子です。',
+      notes:'⚠️ 頭だけ撫でるのが好きです。他の場所を触るとパンチが飛んできます！<br/>⚠️ 頭のみ撫でてあげてください 🥊',
+      greeting:'Tuōchuāng：頭だけ！👊',
+    },
+  },
+  {
+    id:'liangpie', pinyin:'Liǎngpiě', emoji:'🥛',
+    gender:'male', type:'caution', angel:false, airtag:true,
+    zh:{
+      hanzi:'兩撇', date:'到職 2024/05/16', extraTag:'', feature:'小鬍子、黑尾巴白貓',
+      traits:['😤 吃飯激動','🎲 非常調皮','🍪 超貪吃','☀️ 愛曬太陽'],
+      desc:'獸醫轉介來的寶寶，非常活潑比較粗魯。<br/>常常不小心打破餐盤、踩到蛋糕，超調皮！',
+      notes:'⚠️ 吃東西時會很激動，請小心靠近！<br/>⚠️ 不要摸肚子，他會不開心 😾<br/>📍 身上有 AirTag 方便找到他。',
+      greeting:'兩撇：吃飯時別靠近我！😤',
+    },
+    en:{
+      hanzi:'', date:'Joined 2024/05/16', extraTag:'', feature:'Little moustache, white cat with black tail',
+      traits:['😤 Feisty at mealtimes','🎲 Very mischievous','🍪 Super greedy','☀️ Loves sunbathing'],
+      desc:'Referred by a vet clinic — very energetic and a bit rough around the edges.<br/>Notorious for accidentally smashing plates and stepping on cakes!',
+      notes:'⚠️ He gets very worked up while eating — stay back during meal times!<br/>⚠️ No belly rubs — he really doesn\'t like it 😾<br/>📍 He wears an AirTag so we can find him.',
+      greeting:'Liǎngpiě: don\'t come near when I eat! 😤',
+    },
+    ko:{
+      hanzi:'', date:'입사 2024/05/16', extraTag:'', feature:'수염 있는 흰 고양이, 검은 꼬리',
+      traits:['😤 밥 먹을 때 흥분','🎲 매우 장난꾸러기','🍪 엄청난 먹보','☀️ 일광욕 좋아함'],
+      desc:'수의사가 소개해 준 아기 고양이로, 매우 활발하고 약간 거칠어요.<br/>접시를 깨거나 케이크를 밟는 것으로 유명한 장난꾸러기예요!',
+      notes:'⚠️ 밥 먹을 때 매우 흥분하니 가까이 가지 마세요!<br/>⚠️ 배 만지기 금지 — 정말 싫어해요 😾<br/>📍 AirTag를 달고 있어서 찾기 쉬워요.',
+      greeting:'Liǎngpiě: 밥 먹을 때 오지 마! 😤',
+    },
+    ja:{
+      hanzi:'', date:'就職 2024/05/16', extraTag:'', feature:'ひげのある白猫、黒いしっぽ',
+      traits:['😤 食事中は興奮する','🎲 とてもやんちゃ','🍪 大食い','☀️ 日向ぼっこが好き'],
+      desc:'獣医さんから紹介された子で、とても活発でやや荒っぽいです。<br/>うっかりお皿を割ったり、ケーキを踏んだりすることで有名なやんちゃ者！',
+      notes:'⚠️ 食事中はとても興奮するので、近づかないでください！<br/>⚠️ お腹を触るのは禁止 — 本当に嫌がります 😾<br/>📍 AirTagをつけているので見つけやすいです。',
+      greeting:'Liǎngpiě：ご飯中は近づかないで！😤',
+    },
+  },
+  {
+    id:'cyber', pinyin:'Cyber', emoji:'🤍',
+    gender:'female', type:'friendly', angel:false, airtag:false,
+    zh:{
+      hanzi:'Cyber', date:'到職 2025/02/17', extraTag:'', feature:'白色緬因貓（大毛球！）',
+      traits:['😤 吃飯激動','🍪 超貪吃','💕 很親人','😴 愛睡覺'],
+      desc:'前飼主沒有好好照顧，送來時身體很差、有腫瘤。<br/>治療一段落後現在非常健康 💪<br/>超級愛<strong>兩撇</strong>，是最可愛的白色大毛球！',
+      notes:'⚠️ 吃東西時會很激動，請小心靠近！<br/>💡 常不小心打破餐盤踩到蛋糕，也是調皮擔當 😄<br/>💕 非常愛撒嬌，很適合拍照！',
+      greeting:'Cyber：我是白色大毛球🤍',
+    },
+    en:{
+      hanzi:'', date:'Joined 2025/02/17', extraTag:'', feature:'White Maine Coon (giant fluff ball!)',
+      traits:['😤 Feisty at mealtimes','🍪 Super greedy','💕 Very affectionate','😴 Loves sleeping'],
+      desc:'Her previous owner neglected her — she arrived in poor health with a tumour.<br/>After treatment she\'s now perfectly healthy 💪<br/>She\'s obsessed with <strong>Liǎngpiě</strong> and is the fluffiest white ball you\'ll ever meet!',
+      notes:'⚠️ She gets very worked up during meals — be careful!<br/>💡 She also has a habit of smashing plates and stepping on cakes 😄<br/>💕 Very cuddly — perfect for photos!',
+      greeting:'Cyber: I\'m a fluffy white ball 🤍',
+    },
+    ko:{
+      hanzi:'', date:'입사 2025/02/17', extraTag:'', feature:'흰 메인쿤 고양이 (거대한 털뭉치!)',
+      traits:['😤 밥 먹을 때 흥분','🍪 엄청난 먹보','💕 매우 친화적','😴 잠꾸러기'],
+      desc:'이전 주인에게 제대로 돌봄을 받지 못해 종양을 가지고 왔어요.<br/>치료 후 지금은 매우 건강해요 💪<br/><strong>Liǎngpiě</strong>를 정말 좋아하고, 가장 귀여운 흰 털뭉치예요!',
+      notes:'⚠️ 밥 먹을 때 매우 흥분하니 조심하세요!<br/>💡 접시를 깨거나 케이크를 밟기도 해요 😄<br/>💕 애교가 많아서 사진 찍기 딱 좋아요!',
+      greeting:'Cyber: 나는 흰 털뭉치야 🤍',
+    },
+    ja:{
+      hanzi:'', date:'就職 2025/02/17', extraTag:'', feature:'白いメインクーン（巨大なもふもふ！）',
+      traits:['😤 食事中は興奮する','🍪 大食い','💕 とても人懐っこい','😴 寝るのが好き'],
+      desc:'前の飼い主に適切に世話をしてもらえず、腫瘍を持った状態で来ました。<br/>治療後、今は元気いっぱいです 💪<br/><strong>Liǎngpiě</strong> が大好きで、最もかわいい白いもふもふです！',
+      notes:'⚠️ 食事中はとても興奮するので注意してください！<br/>💡 お皿を割ったりケーキを踏んだりすることも 😄<br/>💕 とても甘えん坊で、写真映えします！',
+      greeting:'Cyber：私は白いもふもふ 🤍',
+    },
+  },
+  {
+    id:'shaosheng', pinyin:'Shāoshēng', emoji:'🐯',
+    gender:'male', type:'caution', angel:false, airtag:true,
+    zh:{
+      hanzi:'燒聲', date:'到職 2024/03/03', extraTag:'', feature:'虎斑貓（有 AirTag）',
+      traits:['😾 討厭陌生人','🚶 愛散步','😤 脾氣不好'],
+      desc:'之前被不當驅趕，導致不喜歡陌生人靠近。<br/>非常愛散步，不能一直散步會焦慮舔毛。<br/>目前使用環境和口服費洛蒙治療中 💊',
+      notes:'🚨 店員沒有在旁協助的情況下，請不要碰他！<br/>🚨 他討厭陌生人觸碰，可能會有激烈反應。<br/>📍 身上有 AirTag，可以追蹤他的位置。',
+      greeting:'燒聲：別亂碰我！😾',
+    },
+    en:{
+      hanzi:'', date:'Joined 2024/03/03', extraTag:'', feature:'Tabby cat (has AirTag)',
+      traits:['😾 Dislikes strangers','🚶 Loves to roam','😤 Short-tempered'],
+      desc:'He was chased away inappropriately in the past and doesn\'t like being approached by strangers.<br/>He loves wandering and gets anxious if he can\'t — currently in treatment with pheromones 💊',
+      notes:'🚨 Please do NOT touch him unless a staff member is present!<br/>🚨 He may react strongly to being touched by strangers.<br/>📍 He wears an AirTag for tracking.',
+      greeting:'Shāoshēng: don\'t touch me! 😾',
+    },
+    ko:{
+      hanzi:'', date:'입사 2024/03/03', extraTag:'', feature:'줄무늬 고양이 (AirTag 착용)',
+      traits:['😾 낯선 사람 싫어함','🚶 산책 좋아함','😤 성격이 까다로움'],
+      desc:'이전에 부당하게 쫓겨난 경험으로 낯선 사람이 다가오는 것을 싫어해요.<br/>산책을 매우 좋아하고, 못 하면 불안해서 털을 핥아요. 현재 치료 중 💊',
+      notes:'🚨 직원이 없는 상태에서 절대 만지지 마세요!<br/>🚨 낯선 사람의 접촉에 격렬하게 반응할 수 있어요.<br/>📍 AirTag를 달고 있어서 위치 추적이 가능해요.',
+      greeting:'Shāoshēng: 함부로 만지지 마! 😾',
+    },
+    ja:{
+      hanzi:'', date:'就職 2024/03/03', extraTag:'', feature:'キジトラ猫（AirTag装着）',
+      traits:['😾 見知らぬ人が苦手','🚶 散歩が大好き','😤 気が短い'],
+      desc:'過去に不当に追い払われた経験があり、見知らぬ人が近づくのを嫌います。<br/>散歩が大好きで、できないと不安になり過度にグルーミングします。現在治療中 💊',
+      notes:'🚨 スタッフが傍にいない場合は、触らないでください！<br/>🚨 見知らぬ人に触られると激しく反応することがあります。<br/>📍 位置追跡のためAirTagをつけています。',
+      greeting:'Shāoshēng：勝手に触らないで！😾',
+    },
+  },
+  {
+    id:'mantou', pinyin:'Mántou', emoji:'🍞',
+    gender:'female', type:'friendly', angel:false, airtag:false,
+    zh:{
+      hanzi:'饅頭', date:'到職 2025/07/11', extraTag:'', feature:'捲耳美短（大頭的媽媽）',
+      traits:['🍪 貪吃','💕 超親人','🥰 愛摸肚子','💝 沒有地雷'],
+      desc:'從私繁救出來，救出時已懷孕，有腎臟問題。<br/>生了三個男生，其中兩隻送給獸醫了 🫶<br/><strong>大頭是她的孩子</strong>，母子倆都在店裡！',
+      notes:'💡 完全沒有地雷，連肚子都可以摸！<br/>💡 因為私繁近親有遺傳疾病，是很需要愛的寶寶 💕',
+      greeting:'饅頭：摸哪裡都OK！🍞',
+    },
+    en:{
+      hanzi:'', date:'Joined 2025/07/11', extraTag:'', feature:'Scottish Fold American Shorthair (Dàtóu\'s mum)',
+      traits:['🍪 Foodie','💕 Super affectionate','🥰 Loves belly rubs','💝 No bad spots'],
+      desc:'Rescued from an illegal breeder while already pregnant — she arrived with kidney issues.<br/>She gave birth to three boys; two went to live with a vet 🫶<br/><strong>Dàtóu is her baby</strong> — mother and son are both here at the café!',
+      notes:'💡 Absolutely no bad spots — even her belly is fair game!<br/>💡 Due to inbreeding she has a hereditary condition — she needs all the love 💕',
+      greeting:'Mántou: pet me anywhere! 🍞',
+    },
+    ko:{
+      hanzi:'', date:'입사 2025/07/11', extraTag:'', feature:'스코티시 폴드 아메리칸 쇼트헤어 (Dàtóu의 엄마)',
+      traits:['🍪 먹보','💕 엄청 친화적','🥰 배 만지기 좋아함','💝 지뢰 없음'],
+      desc:'임신 중인 상태로 불법 사육장에서 구조됐고, 신장 문제가 있었어요.<br/>세 마리 수컷을 낳았고, 두 마리는 수의사에게 입양됐어요 🫶<br/><strong>Dàtóu가 그녀의 아이</strong>예요 — 모자 모두 카페에 있어요!',
+      notes:'💡 지뢰가 전혀 없어요 — 배도 만질 수 있어요!<br/>💡 근친 번식으로 유전 질환이 있어서 많은 사랑이 필요해요 💕',
+      greeting:'Mántou: 어디든 만져도 OK! 🍞',
+    },
+    ja:{
+      hanzi:'', date:'就職 2025/07/11', extraTag:'', feature:'スコティッシュフォールド・アメリカンショートヘア（Dàtóu のお母さん）',
+      traits:['🍪 食いしん坊','💕 とても人懐っこい','🥰 お腹撫でが好き','💝 地雷なし'],
+      desc:'妊娠中に非合法なブリーダーから救出され、腎臓の問題も抱えていました。<br/>男の子を三匹産み、うち二匹は獣医さんに引き取られました 🫶<br/><strong>Dàtóu は彼女の子</strong>で、母子ともにカフェにいます！',
+      notes:'💡 地雷が全くありません — お腹も触ってOKです！<br/>💡 近親交配による遺伝的疾患があるため、愛情が必要な子です 💕',
+      greeting:'Mántou：どこを触ってもOK！🍞',
+    },
+  },
+  {
+    id:'datou', pinyin:'Dàtóu', emoji:'🍙',
+    gender:'male', type:'friendly', angel:false, airtag:false,
+    zh:{
+      hanzi:'大頭', date:'生日 2024/09/10', extraTag:'', feature:'捲耳美短、腿超短（饅頭的兒子）',
+      traits:['🎲 頑皮','💕 親人','🍪 貪吃','🦵 腿超短'],
+      desc:'在媽媽肚子裡頭太大差點難產，所以叫「大頭」！<br/>媽媽是饅頭，有混到曼赤肯所以腿很短超可愛。<br/>因近親繁殖有<strong>心臟病</strong>，不能太激烈活動。',
+      notes:'⚠️ 有心臟病和關節畸形，請不要讓他做激烈活動。<br/>💡 短腿大頭超可愛，動作輕柔就可以摸他 💕',
+      greeting:'大頭：我腿超短超可愛🍙',
+    },
+    en:{
+      hanzi:'', date:'Born 2024/09/10', extraTag:'', feature:'Scottish Fold American Shorthair, very short legs (Mántou\'s son)',
+      traits:['🎲 Mischievous','💕 Affectionate','🍪 Foodie','🦵 Super short legs'],
+      desc:'His head was so big in the womb his mum almost had a difficult birth — hence "Big Head"!<br/>His mum is Mántou; the Munchkin mix gives him adorably short legs.<br/>Due to inbreeding he has a <strong>heart condition</strong> — no rough play please.',
+      notes:'⚠️ He has heart disease and joint deformities — please don\'t encourage rough play.<br/>💡 His short legs are incredibly cute — gentle pets are totally welcome 💕',
+      greeting:'Dàtóu: my legs are so short and cute 🍙',
+    },
+    ko:{
+      hanzi:'', date:'생일 2024/09/10', extraTag:'', feature:'스코티시 폴드, 초짧은 다리 (Mántou의 아들)',
+      traits:['🎲 장난꾸러기','💕 친화적','🍪 먹보','🦵 다리 엄청 짧음'],
+      desc:'엄마 배 속에서 머리가 너무 커서 난산할 뻔해서 "빅 헤드"라는 이름이 붙었어요!<br/>엄마는 Mántou이고, 먼치킨 혼혈로 다리가 매우 짧아서 귀여워요.<br/>근친 번식으로 <strong>심장병</strong>이 있어서 격렬한 활동은 안 돼요.',
+      notes:'⚠️ 심장병과 관절 기형이 있으니 격렬한 활동은 시키지 마세요.<br/>💡 짧은 다리가 엄청 귀여워요 — 부드럽게 쓰다듬어 주세요 💕',
+      greeting:'Dàtóu: 내 다리 짧고 귀엽지 🍙',
+    },
+    ja:{
+      hanzi:'', date:'誕生日 2024/09/10', extraTag:'', feature:'スコティッシュフォールド、超短い足（Mántou の息子）',
+      traits:['🎲 やんちゃ','💕 人懐っこい','🍪 食いしん坊','🦵 超短い足'],
+      desc:'お腹の中で頭が大きすぎてお母さんが難産になりかけたので「大きな頭」という名前に！<br/>お母さんは Mántou で、マンチカンとの混血でとてもかわいい短い足をしています。<br/>近親交配のため<strong>心臓病</strong>があるので、激しい遊びは禁止です。',
+      notes:'⚠️ 心臓病と関節変形があるため、激しい遊びをさせないでください。<br/>💡 短い足がとてもかわいいです — 優しく撫でてあげてください 💕',
+      greeting:'Dàtóu：短い足が超かわいい 🍙',
+    },
+  },
+];
+
+/* ════════════════════════════════
+   RENDERING
+════════════════════════════════ */
+let currentLang = 'zh';
+
+function switchLang(lang) {
+  currentLang = lang;
+  // Font
+  document.body.className = lang === 'zh' ? '' : `lang-${lang}`;
+  // Nav buttons
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.includes(
+      {zh:'中文',en:'EN',ko:'한국어',ja:'日本語'}[lang]
+    ));
+  });
+  const u = UI[lang];
+  // Nav links
+  document.querySelectorAll('[data-key]').forEach(el => {
+    el.textContent = u[el.dataset.key];
+  });
+  // Hero
+  document.getElementById('hero-title').textContent = u.hero_title;
+  document.getElementById('hero-sub').innerHTML = u.hero_sub.replace(/\n/g,'<br/>');
+  document.getElementById('hero-badge').textContent = u.hero_badge;
+  document.getElementById('scroll-hint-text').textContent = u.scroll_hint;
+  // Sections
+  document.getElementById('rules-title').textContent = u.rules_title;
+  document.getElementById('rules-sub').textContent = u.rules_sub;
+  document.getElementById('cats-title').textContent = u.cats_title;
+  document.getElementById('cats-sub').textContent = u.cats_sub;
+  // Banner
+  document.getElementById('banner-text').innerHTML = u.banner_text;
+  // Footer
+  document.getElementById('footer-1').textContent = u.footer_1;
+  document.getElementById('footer-2').innerHTML = u.footer_2.replace('美好的時光','<strong>美好的時光</strong>').replace('wonderful time','<strong>wonderful time</strong>').replace('즐거운 시간','<strong>즐거운 시간</strong>').replace('素敵なひととき','<strong>素敵なひととき</strong>');
+  document.getElementById('footer-3').textContent = u.footer_3;
+  // Re-render dynamic content
+  renderRules();
+  renderCats();
+  renderFilters();
+  // Re-observe
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+  }, 50);
+}
+
+function renderRules() {
+  const u = UI[currentLang];
+  const grid = document.getElementById('rules-grid');
+  const tagLabels = { danger:u.tag_danger, warning:u.tag_warning, info:u.tag_info, kind:u.tag_kind };
+  grid.innerHTML = RULES.map(r => {
+    const t = r[currentLang];
+    return `<div class="rule-card ${r.type} fade-in" onclick="ripple(this)">
+      <span class="rule-tag ${r.type}">${tagLabels[r.type]}</span>
+      <div class="rule-icon">${r.icon}</div>
+      <h3>${t.title}</h3>
+      <p>${t.desc.replace(/\n/g,'<br/>')}</p>
+    </div>`;
+  }).join('');
+}
+
+function renderFilters() {
+  const u = UI[currentLang];
+  const bar = document.getElementById('filter-bar');
+  bar.innerHTML = [
+    ['all', u.filter_all], ['female', u.filter_female], ['male', u.filter_male],
+    ['friendly', u.filter_friendly], ['caution', u.filter_caution]
+  ].map(([key, label], i) =>
+    `<button class="filter-btn${i===0?' active':''}" onclick="filterCats('${key}',this)">${label}</button>`
+  ).join('');
+}
+
+function renderCats() {
+  const u = UI[currentLang];
+  const grid = document.getElementById('cats-grid');
+  grid.innerHTML = CATS.map(cat => {
+    const t = cat[currentLang];
+    const isAngel = cat.angel;
+    const genderTag = cat.gender === 'female'
+      ? `<span class="cat-tag tag-female">${u.tag_female}</span>`
+      : `<span class="cat-tag tag-male">${u.tag_male}</span>`;
+    const typeTag = cat.type === 'friendly'
+      ? `<span class="cat-tag tag-friendly">${u.tag_friendly}</span>`
+      : `<span class="cat-tag tag-caution">${u.tag_caution}</span>`;
+    const airtag = cat.airtag ? `<span class="cat-tag tag-airtag">${u.tag_airtag}</span>` : '';
+    const angelTag = isAngel ? `<span class="cat-tag tag-angel">${u.tag_angel}</span>` : '';
+    const angelBadge = isAngel ? `<span class="angel-badge">${u.angel_badge}</span>` : '';
+    const hanziSpan = t.hanzi ? `<span class="cat-hanzi">${t.hanzi}</span>` : '';
+    const traits = t.traits.map(tr => `<span class="trait-chip">${tr}</span>`).join('');
+    return `
+    <div class="cat-card${isAngel?' angel-card':''} fade-in" data-gender="${cat.gender}" data-type="${cat.type}" data-id="${cat.id}" onclick="toggleCard(this)">
+      ${angelBadge}
+      <div class="cat-photo-wrap">
+        <img class="cat-real-photo" src="photos/${cat.id}.jpg" onerror="this.style.display='none'" alt="${cat.pinyin}">
+        <div class="cat-photo-placeholder">${cat.emoji}</div>
       </div>
-
-      <div class="rule-card danger fade-in" onclick="ripple(this)">
-        <span class="rule-tag danger">🚫 嚴格禁止</span>
-        <div class="rule-icon">🧴</div>
-        <h3>嚴禁防蚊液 / 太重香水</h3>
-        <p>如有使用防蚊液或濃郁香水，<br/>請至戶外用餐，以免影響貓咪。</p>
+      <div class="cat-body">
+        <div class="cat-name-row">
+          <span class="cat-pinyin">${cat.pinyin}</span>
+          ${hanziSpan}
+        </div>
+        <div class="cat-meta">
+          ${genderTag}${angelTag}${typeTag}${airtag}
+          <span class="cat-tag tag-date">${t.date}</span>
+        </div>
+        <div class="cat-traits">${traits}</div>
+        <div class="feature-box"><span class="label">${u.label_feature}</span>${t.feature}</div>
+        <div class="cat-desc">${t.desc}</div>
+        <div class="cat-notes">${t.notes}</div>
+        <button class="expand-btn" onclick="event.stopPropagation();toggleCard(this.closest('.cat-card'))">
+          <span class="expand-label">${u.expand_more}</span> <span class="arrow">▼</span>
+        </button>
       </div>
+    </div>`;
+  }).join('');
+}
 
-      <div class="rule-card warning fade-in" onclick="ripple(this)">
-        <span class="rule-tag warning">⚠️ 請注意</span>
-        <div class="rule-icon">🤗</div>
-        <h3>嚴禁強行抱貓</h3>
-        <p>每隻貓咪都有自己的個性。<br/>除非貓咪主動靠近，否則請勿強行抱起。</p>
-      </div>
+/* ════════════════════════════════
+   INTERACTIONS
+════════════════════════════════ */
+function ripple(card) {
+  card.style.transform = 'scale(0.97)';
+  setTimeout(() => card.style.transform = '', 150);
+}
 
-      <div class="rule-card warning fade-in" onclick="ripple(this)">
-        <span class="rule-tag warning">⚠️ 請注意</span>
-        <div class="rule-icon">🙅</div>
-        <h3>禁止摸肚子 & 捏爪子</h3>
-        <p>請溫柔互動，不要摸肚子或捏爪子。<br/>拍屁屁方式請詢問店員！</p>
-      </div>
+function toggleCard(card) {
+  const u = UI[currentLang];
+  const wasExpanded = card.classList.contains('expanded');
+  card.classList.toggle('expanded');
+  const label = card.querySelector('.expand-label');
+  if (label) label.textContent = card.classList.contains('expanded') ? u.expand_less : u.expand_more;
+  if (!wasExpanded) {
+    const catId = card.dataset.id;
+    const cat = CATS.find(c => c.id === catId);
+    if (cat) showToast(cat[currentLang].greeting);
+    spawnHeart(card);
+  }
+}
 
-      <div class="rule-card info fade-in" onclick="ripple(this)">
-        <span class="rule-tag info">💬 提示</span>
-        <div class="rule-icon">🎣</div>
-        <h3>本店不提供逗貓棒</h3>
-        <p>想和貓咪互動？可請店員協助引導，<br/>夥伴們都很樂意幫忙 🐾</p>
-      </div>
+function spawnHeart(el) {
+  const rect = el.getBoundingClientRect();
+  const emojis = ['❤️','🧡','💛','💚','💙','💜','🤍','💕','🐾','⭐'];
+  for (let i = 0; i < 4; i++) {
+    setTimeout(() => {
+      const span = document.createElement('div');
+      span.className = 'paw-cursor';
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = (rect.left + rect.width/2 + (Math.random()-0.5)*80) + 'px';
+      span.style.top  = (rect.top + window.scrollY + 40) + 'px';
+      document.body.appendChild(span);
+      setTimeout(() => span.remove(), 900);
+    }, i * 100);
+  }
+}
 
-      <div class="rule-card info fade-in" onclick="ripple(this)">
-        <span class="rule-tag info">💬 提示</span>
-        <div class="rule-icon">📱</div>
-        <h3>入座前請看 Instagram 精選動態</h3>
-        <p>請先觀看 IG 精選動態中的「入店須知」<br/>並閱讀本手冊，不聽勸者請至戶外。</p>
-      </div>
+function filterCats(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.cat-card').forEach(card => {
+    let show = true;
+    if (type === 'female') show = card.dataset.gender === 'female';
+    else if (type === 'male') show = card.dataset.gender === 'male';
+    else if (type === 'friendly') show = card.dataset.type === 'friendly';
+    else if (type === 'caution') show = card.dataset.type === 'caution';
+    card.style.display = show ? '' : 'none';
+  });
+}
 
-      <div class="rule-card warning fade-in" onclick="ripple(this)">
-        <span class="rule-tag warning">⚠️ 請注意</span>
-        <div class="rule-icon">👶</div>
-        <h3>孩童請家長全程陪同</h3>
-        <p>孩童與貓咪互動，家長務必在旁陪同。<br/>請勿讓孩童獨自與貓咪相處。</p>
-      </div>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
 
-      <div class="rule-card kind fade-in" onclick="ripple(this)">
-        <span class="rule-tag kind">🌿 友善提示</span>
-        <div class="rule-icon">🔈</div>
-        <h3>請注意音量</h3>
-        <p>可以輕鬆聊天，但請避免大聲喧嘩，<br/>以免驚嚇到貓咪及影響其他客人。</p>
-      </div>
-
-      <div class="rule-card kind fade-in" onclick="ripple(this)">
-        <span class="rule-tag kind">🌿 友善提示</span>
-        <div class="rule-icon">🍰</div>
-        <h3>餐點可以客製</h3>
-        <p>餐點有想調整的都可以直接告知夥伴，<br/>我們會盡力配合您的需求 ☕</p>
-      </div>
-
-    </div>
-
-    <div class="important-banner fade-in">
-      <div class="big-icon">⚠️</div>
-      <p>
-        如因<strong>自身行為不當嚇到貓咪</strong>，或<strong>故意挑釁被貓咪抓傷</strong>，本店<strong>恕不負賠償責任</strong>。<br/>
-        請尊重我們的小動物們，謝謝 🙏
-      </p>
-    </div>
-  </section>
-
-  <!-- ══ 貓咪介紹 ══ -->
-  <section id="cats">
-    <div class="section-title fade-in">
-      <h2>🐾 認識我們的毛孩們</h2>
-      <p>點擊卡片可以展開更多資訊，和牠們打個招呼吧！</p>
-      <div class="divider">🐱</div>
-    </div>
-
-    <!-- 篩選 -->
-    <div class="filter-bar fade-in">
-      <button class="filter-btn active" onclick="filterCats('all', this)">全部 🐾</button>
-      <button class="filter-btn" onclick="filterCats('female', this)">女生 🎀</button>
-      <button class="filter-btn" onclick="filterCats('male', this)">男生 💙</button>
-      <button class="filter-btn" onclick="filterCats('friendly', this)">親人型 🥰</button>
-      <button class="filter-btn" onclick="filterCats('caution', this)">需注意 ⚠️</button>
-    </div>
-
-    <div class="cats-grid" id="cats-grid">
-
-      <!-- 點點（天使） -->
-      <div class="cat-card angel-card fade-in" data-gender="female" data-type="friendly" onclick="toggleCard(this)">
-        <span class="angel-badge">🌟 永遠的天使</span>
-        <div class="cat-header">
-          <div class="cat-avatar">🌸</div>
-          <div class="cat-header-info">
-            <div class="cat-name">點點</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-female">♀ 女生</span>
-              <span class="cat-tag tag-angel">天使</span>
-              <span class="cat-tag tag-date">到職 2022/10/09</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">💕 溫馴</span>
-            <span class="trait-chip">🍪 貪吃</span>
-            <span class="trait-chip">🌸 愛撒嬌</span>
-            <span class="trait-chip">🏔️ 愛看風景</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>最美白底花貓
-          </div>
-          <div class="cat-desc">
-            H 的第一個寶貝。最喜歡 HAO，有點笨笨的超可愛。<br/>
-            <strong>心臟病發後去了貓星球</strong>，是我們永遠的小天使 💙<br/>
-            在牆上能看到漂亮的點點，她永遠在我們心中。
-          </div>
-          <div class="cat-notes">
-            📌 點點雖然不在了，但她是我們店的靈魂。<br/>
-            在牆上可以看到她最美的樣子，歡迎和她打個招呼 🌟
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 奶精 -->
-      <div class="cat-card fade-in" data-gender="female" data-type="friendly" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🤍</div>
-          <div class="cat-header-info">
-            <div class="cat-name">奶精</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-female">♀ 女生</span>
-              <span class="cat-tag tag-friendly">親人型</span>
-              <span class="cat-tag tag-date">到職 2023/03/06</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">💕 溫馴</span>
-            <span class="trait-chip">🍪 貪吃</span>
-            <span class="trait-chip">🌸 愛撒嬌</span>
-            <span class="trait-chip">👖 喜歡牛仔褲</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>背後有一戳白毛
-          </div>
-          <div class="cat-desc">
-            沒有地雷的愛撒嬌寶寶 🫶<br/>
-            有個親姊妹叫<strong>二號</strong>，喜歡和店員玩逗貓棒。<br/>
-            有需求或想玩的時候會咬尾巴做「假狩獵」。
-          </div>
-          <div class="cat-notes">
-            💡 拍屁屁好讚！可以輕拍她的屁屁，她很享受。<br/>
-            💡 夥伴結束手邊工作都會陪她玩喔 🎉
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 二號 -->
-      <div class="cat-card fade-in" data-gender="female" data-type="caution" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">💧</div>
-          <div class="cat-header-info">
-            <div class="cat-name">二號</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-female">♀ 女生</span>
-              <span class="cat-tag tag-caution">需留意</span>
-              <span class="cat-tag tag-date">到職 2023/03/06</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">💕 溫馴</span>
-            <span class="trait-chip">🎲 調皮</span>
-            <span class="trait-chip">💧 愛玩水</span>
-            <span class="trait-chip">✂️ 愛梳毛</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>尾巴末端有個白點點
-          </div>
-          <div class="cat-desc">
-            喜歡玩水的調皮蛋 🫶<br/>
-            有個親姊妹叫<strong>奶精</strong>。<br/>
-            因為不能玩水有點焦慮會舔毛，目前使用環境和口服費洛蒙治療中。
-          </div>
-          <div class="cat-notes">
-            ⚠️ 因為焦慮舔毛，請不要用水相關的東西逗弄她。<br/>
-            💊 正在治療中，請溫柔對待她 💗
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 花花 -->
-      <div class="cat-card fade-in" data-gender="female" data-type="caution" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🌺</div>
-          <div class="cat-header-info">
-            <div class="cat-name">花花</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-female">♀ 女生</span>
-              <span class="cat-tag tag-caution">容易緊張</span>
-              <span class="cat-tag tag-date">到職 2023/03/06</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">😬 容易緊張</span>
-            <span class="trait-chip">🍪 愛吃</span>
-            <span class="trait-chip">👦 超喜歡男生</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>臉上有個三八痣
-          </div>
-          <div class="cat-desc">
-            喜歡進進出出休息室的小女生。<br/>
-            跟奶精和二號同時間來，但不是親姊妹。<br/>
-            特別喜歡<strong>男生</strong>，超喜歡輕輕拍屁屁。
-          </div>
-          <div class="cat-notes">
-            💡 她容易緊張，請動作放輕，讓她先適應再互動。<br/>
-            💡 輕輕拍屁屁她超愛，男生朋友可以試試 😄
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 汪汪 -->
-      <div class="cat-card fade-in" data-gender="male" data-type="friendly" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🟠</div>
-          <div class="cat-header-info">
-            <div class="cat-name">汪汪</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-male">♂ 男生</span>
-              <span class="cat-tag tag-friendly">親人型</span>
-              <span class="cat-tag tag-airtag">📍 AirTag</span>
-              <span class="cat-tag tag-date">生日 2017/05</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">😴 溫順愛睡</span>
-            <span class="trait-chip">☀️ 愛曬太陽</span>
-            <span class="trait-chip">🍖 挑食橘貓</span>
-            <span class="trait-chip">👇 愛搔下巴</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>獨眼橘貓（有 AirTag）
-          </div>
-          <div class="cat-desc">
-            闆娘大學時期領養的，跟<strong>脫窗</strong>一起長大。<br/>
-            小時候流浪，眼睛感染後拿掉了一隻眼睛。<br/>
-            雖然獨眼，但依然是最帥的橘貓 🧡
-          </div>
-          <div class="cat-notes">
-            💡 喜歡被搔下巴，可以試試！<br/>
-            📍 身上有 AirTag 方便尋找他的位置。
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 脫窗 -->
-      <div class="cat-card fade-in" data-gender="female" data-type="caution" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">👀</div>
-          <div class="cat-header-info">
-            <div class="cat-name">脫窗</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-female">♀ 女生</span>
-              <span class="cat-tag tag-caution">需留意</span>
-              <span class="cat-tag tag-date">生日 2018/04</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">😰 膽小溫順</span>
-            <span class="trait-chip">👁️ 鬥雞眼</span>
-            <span class="trait-chip">🤔 視力不清</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>鬥雞眼白底虎斑
-          </div>
-          <div class="cat-desc">
-            闆娘大學時期領養的，跟<strong>汪汪</strong>一起長大。<br/>
-            小時候流浪眼睛生病，變成鬥雞眼。<br/>
-            眼睛看不清楚，容易緊張。
-          </div>
-          <div class="cat-notes">
-            ⚠️ 只喜歡被摸頭，碰其他地方會生氣揮拳！<br/>
-            ⚠️ 請不要隨意觸碰頭部以外的地方，否則她會不開心 🥊
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 兩撇 -->
-      <div class="cat-card fade-in" data-gender="male" data-type="caution" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🥛</div>
-          <div class="cat-header-info">
-            <div class="cat-name">兩撇</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-male">♂ 男生</span>
-              <span class="cat-tag tag-caution">吃飯會激動</span>
-              <span class="cat-tag tag-airtag">📍 AirTag</span>
-              <span class="cat-tag tag-date">到職 2024/05/16</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">😤 吃飯激動</span>
-            <span class="trait-chip">🎲 非常調皮</span>
-            <span class="trait-chip">🍪 超貪吃</span>
-            <span class="trait-chip">☀️ 愛曬太陽</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>小鬍子、黑尾巴白貓
-          </div>
-          <div class="cat-desc">
-            獸醫轉介來的寶寶，非常活潑比較粗魯。<br/>
-            常常不小心打破餐盤、踩到蛋糕，超調皮！
-          </div>
-          <div class="cat-notes">
-            ⚠️ 吃東西時會很激動，請小心靠近！<br/>
-            ⚠️ 不要摸肚子，他會不開心 😾<br/>
-            📍 身上有 AirTag 方便找到他。
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Cyber -->
-      <div class="cat-card fade-in" data-gender="female" data-type="friendly" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🤍</div>
-          <div class="cat-header-info">
-            <div class="cat-name">Cyber</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-female">♀ 女生</span>
-              <span class="cat-tag tag-friendly">親人型</span>
-              <span class="cat-tag tag-date">到職 2025/02/17</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">😤 吃飯激動</span>
-            <span class="trait-chip">🍪 超貪吃</span>
-            <span class="trait-chip">💕 很親人</span>
-            <span class="trait-chip">😴 愛睡覺</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>白色緬因貓（大毛球！）
-          </div>
-          <div class="cat-desc">
-            前飼主沒有好好照顧，送來時身體很差、有腫瘤。<br/>
-            治療一段落後現在非常健康 💪<br/>
-            超級愛<strong>兩撇</strong>，是最可愛的白色大毛球！
-          </div>
-          <div class="cat-notes">
-            ⚠️ 吃東西時會很激動，請小心靠近！<br/>
-            💡 常不小心打破餐盤踩到蛋糕，也是調皮擔當 😄<br/>
-            💕 非常愛撒嬌，很適合拍照！
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 燒聲 -->
-      <div class="cat-card fade-in" data-gender="male" data-type="caution" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🐯</div>
-          <div class="cat-header-info">
-            <div class="cat-name">燒聲</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-male">♂ 男生</span>
-              <span class="cat-tag tag-caution">請勿隨意觸碰</span>
-              <span class="cat-tag tag-airtag">📍 AirTag</span>
-              <span class="cat-tag tag-date">到職 2024/03/03</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">😾 討厭陌生人</span>
-            <span class="trait-chip">🚶 愛散步</span>
-            <span class="trait-chip">😤 脾氣不好</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>虎斑貓（有 AirTag）
-          </div>
-          <div class="cat-desc">
-            之前被不當驅趕，導致不喜歡陌生人靠近。<br/>
-            非常愛散步，不能一直散步會焦慮舔毛。<br/>
-            目前使用環境和口服費洛蒙治療中 💊
-          </div>
-          <div class="cat-notes">
-            🚨 店員沒有在旁協助的情況下，請不要碰他！<br/>
-            🚨 他討厭陌生人觸碰，可能會有激烈反應。<br/>
-            📍 身上有 AirTag，可以追蹤他的位置。
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 饅頭 -->
-      <div class="cat-card fade-in" data-gender="female" data-type="friendly" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🍞</div>
-          <div class="cat-header-info">
-            <div class="cat-name">饅頭</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-female">♀ 女生</span>
-              <span class="cat-tag tag-friendly">沒有地雷</span>
-              <span class="cat-tag tag-date">到職 2025/07/11</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">🍪 貪吃</span>
-            <span class="trait-chip">💕 超親人</span>
-            <span class="trait-chip">🥰 愛摸肚子</span>
-            <span class="trait-chip">💝 沒有地雷</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>捲耳美短（大頭的媽媽）
-          </div>
-          <div class="cat-desc">
-            從私繁救出來，救出時已懷孕，有腎臟問題。<br/>
-            生了三個男生，其中兩隻送給獸醫了 🫶<br/>
-            <strong>大頭是她的孩子</strong>，母子倆都在店裡！
-          </div>
-          <div class="cat-notes">
-            💡 完全沒有地雷，連肚子都可以摸！<br/>
-            💡 因為私繁近親有遺傳疾病，是很需要愛的寶寶 💕
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 大頭 -->
-      <div class="cat-card fade-in" data-gender="male" data-type="friendly" onclick="toggleCard(this)">
-        <div class="cat-header">
-          <div class="cat-avatar">🍙</div>
-          <div class="cat-header-info">
-            <div class="cat-name">大頭</div>
-            <div class="cat-meta">
-              <span class="cat-tag tag-male">♂ 男生</span>
-              <span class="cat-tag tag-friendly">親人型</span>
-              <span class="cat-tag tag-date">生日 2024/09/10</span>
-            </div>
-          </div>
-        </div>
-        <div class="cat-body">
-          <div class="cat-traits">
-            <span class="trait-chip">🎲 頑皮</span>
-            <span class="trait-chip">💕 親人</span>
-            <span class="trait-chip">🍪 貪吃</span>
-            <span class="trait-chip">🦵 腿超短</span>
-          </div>
-          <div class="feature-box">
-            <span class="label">特徵：</span>捲耳美短、腿超短（饅頭的兒子）
-          </div>
-          <div class="cat-desc">
-            在媽媽肚子裡頭太大差點難產，所以叫「大頭」！<br/>
-            媽媽是饅頭，有混到曼赤肯所以腿很短超可愛。<br/>
-            因近親繁殖有<strong>心臟病</strong>，不能太激烈活動。
-          </div>
-          <div class="cat-notes">
-            ⚠️ 有心臟病和關節畸形，請不要讓他做激烈活動。<br/>
-            💡 短腿大頭超可愛，動作輕柔就可以摸他 💕
-          </div>
-          <button class="expand-btn">
-            查看更多 <span class="arrow">▼</span>
-          </button>
-        </div>
-      </div>
-
-    </div><!-- /cats-grid -->
-  </section>
-
-  <!-- ══ Footer ══ -->
-  <footer>
-    <div class="hearts">🐾 🐱 🐾</div>
-    <p>感謝您閱讀完入店須知</p>
-    <p>希望您和我們的毛孩們都能度過<strong>美好的時光</strong> ☕</p>
-    <p style="margin-top:1rem; font-size:0.78rem; opacity:0.5;">
-      如有任何問題，請隨時詢問夥伴們 🙏
-    </p>
-  </footer>
-
-  <!-- ══ JavaScript ══ -->
-  <script>
-    /* ── 頁面捲動動畫 ── */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    /* ── 回頂部按鈕 ── */
-    const backTop = document.getElementById('back-top');
-    window.addEventListener('scroll', () => {
-      backTop.classList.toggle('visible', window.scrollY > 400);
-    });
-
-    /* ── Toast 通知 ── */
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
+/* ════════════════════════════════
+   SCROLL & INIT
+════════════════════════════════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
     }
+  });
+}, { threshold: 0.1 });
 
-    /* ── Hero 貓咪彩蛋 ── */
-    const heroCat = document.getElementById('hero-cat');
-    const cats = ['🐱','😺','😻','🙀','😽','🐈','🐈‍⬛','🐾'];
-    let catIdx = 0;
-    heroCat.addEventListener('click', () => {
-      catIdx = (catIdx + 1) % cats.length;
-      heroCat.textContent = cats[catIdx];
-      const messages = [
-        '喵～歡迎光臨！', '請愛護我們的貓咪 🐾', '謝謝你的到來 💕',
-        '記得看完須知唷！', '今天也要開心～', '貓咪想被摸摸 🥰',
-        '遵守規定大家都開心！', '歡迎再來 ☕'
-      ];
-      showToast(messages[catIdx]);
-    });
+window.addEventListener('scroll', () => {
+  document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
+});
 
-    /* ── 規定卡片漣漪 ── */
-    function ripple(card) {
-      card.style.transform = 'scale(0.97)';
-      setTimeout(() => card.style.transform = '', 150);
-    }
+// Hero cat easter egg
+const heroCatEl = document.getElementById('hero-cat');
+const catEmojis = ['🐱','😺','😻','🙀','😽','🐈','🐈‍⬛','🐾'];
+let catIdx = 0;
+heroCatEl.addEventListener('click', () => {
+  catIdx = (catIdx + 1) % catEmojis.length;
+  heroCatEl.textContent = catEmojis[catIdx];
+  showToast(UI[currentLang].toast_msgs[catIdx]);
+});
 
-    /* ── 貓咪卡片展開 ── */
-    function toggleCard(card) {
-      const wasExpanded = card.classList.contains('expanded');
-      // 不關閉其他的，讓每張獨立切換
-      card.classList.toggle('expanded');
-      if (!wasExpanded) {
-        const name = card.querySelector('.cat-name').textContent;
-        const greetings = {
-          '點點': '🌟 點點永遠在我們心中...',
-          '奶精': '奶精：摸我拍屁屁！💕',
-          '二號': '二號：最愛玩水啦～💧',
-          '花花': '花花：男生男生快來！😳',
-          '汪汪': '汪汪：搔我下巴🧡',
-          '脫窗': '脫窗：只能摸頭！👊',
-          '兩撇': '兩撇：吃飯時別靠近我！😤',
-          'Cyber': 'Cyber：我是白色大毛球🤍',
-          '燒聲': '燒聲：別亂碰我！😾',
-          '饅頭': '饅頭：摸哪裡都OK！🍞',
-          '大頭': '大頭：我腿超短超可愛🍙',
-        };
-        showToast(greetings[name] || `認識${name}！`);
-        // 彈出愛心
-        spawnHeart(card);
-      }
-    }
+// Paw easter egg on click
+let clickCount = 0;
+document.addEventListener('click', (e) => {
+  clickCount++;
+  if (clickCount % 7 === 0) {
+    const span = document.createElement('div');
+    span.className = 'paw-cursor';
+    span.textContent = '🐾';
+    span.style.left = e.clientX - 14 + 'px';
+    span.style.top  = e.clientY + window.scrollY - 14 + 'px';
+    document.body.appendChild(span);
+    setTimeout(() => span.remove(), 900);
+  }
+});
 
-    /* ── 愛心彈出效果 ── */
-    function spawnHeart(el) {
-      const rect = el.getBoundingClientRect();
-      const emojis = ['❤️','🧡','💛','💚','💙','💜','🤍','💕','🐾','⭐'];
-      for (let i = 0; i < 4; i++) {
-        setTimeout(() => {
-          const span = document.createElement('div');
-          span.className = 'paw-cursor';
-          span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-          span.style.left = (rect.left + rect.width/2 + (Math.random()-0.5)*80) + 'px';
-          span.style.top  = (rect.top + window.scrollY + 40) + 'px';
-          document.body.appendChild(span);
-          setTimeout(() => span.remove(), 900);
-        }, i * 100);
-      }
-    }
-
-    /* ── 篩選貓咪 ── */
-    function filterCats(type, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.cat-card').forEach(card => {
-        const gender = card.dataset.gender;
-        const catType = card.dataset.type;
-        let show = true;
-        if (type === 'female') show = gender === 'female';
-        else if (type === 'male') show = gender === 'male';
-        else if (type === 'friendly') show = catType === 'friendly';
-        else if (type === 'caution') show = catType === 'caution';
-        card.style.display = show ? '' : 'none';
-      });
-    }
-
-    /* ── 滑鼠互動彩蛋（點擊隨機出現爪印） ── */
-    let clickCount = 0;
-    document.addEventListener('click', (e) => {
-      clickCount++;
-      if (clickCount % 7 === 0) {
-        const span = document.createElement('div');
-        span.className = 'paw-cursor';
-        span.textContent = '🐾';
-        span.style.left = e.clientX - 14 + 'px';
-        span.style.top  = e.clientY + window.scrollY - 14 + 'px';
-        document.body.appendChild(span);
-        setTimeout(() => span.remove(), 900);
-      }
-    });
-  </script>
+// Init
+renderRules();
+renderFilters();
+renderCats();
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
