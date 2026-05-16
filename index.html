@@ -368,7 +368,7 @@
   </div>
 <div class="rules-grid" id="rules-grid"></div>
 
-<div class="important-banner fade-in" id="important-banner">
+<div class="important-banner visible" id="important-banner">
   <div class="big-icon">⚠️</div>
   <p id="banner-text">
     如因<strong>自身行為不當嚇到貓咪</strong>，或<strong>故意挑釁被貓咪抓傷</strong>，本店<strong>恕不負賠償責任</strong>。<br>
@@ -379,7 +379,7 @@
 
 <!-- Cats -->
 <section id="cats">
-  <div class="section-title fade-in">
+  <div class="section-title visible">
     <h2 id="cats-title">🐾 認識我們的毛孩們</h2>
     <p id="cats-sub">點擊卡片可以展開更多資訊，和牠們打個招呼吧！</p>
     <div class="divider">🐱</div>
@@ -1143,9 +1143,12 @@ document.addEventListener('click', (e) => {
     setTimeout(() => span.remove(), 900);
   }
 });
-
-// Init
-switchLang('zh');
+window.addEventListener('DOMContentLoaded', () => {
+  switchLang('zh');
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  });
+});
 </script>
 </body>
 </html>
