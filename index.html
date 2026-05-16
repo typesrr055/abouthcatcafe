@@ -965,13 +965,19 @@ function switchLang(lang) {
   document.getElementById('footer-2').innerHTML = u.footer_2.replace('美好的時光','<strong>美好的時光</strong>').replace('wonderful time','<strong>wonderful time</strong>').replace('즐거운 시간','<strong>즐거운 시간</strong>').replace('素敵なひととき','<strong>素敵なひととき</strong>');
   document.getElementById('footer-3').textContent = u.footer_3;
   // Re-render dynamic content
-  renderRules();
-  renderCats();
-  renderFilters();
-  // Re-observe
-  setTimeout(() => {
-    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
-  }, 50);
+renderRules();
+renderCats();
+renderFilters();
+
+requestAnimationFrame(() => {
+  document.querySelectorAll(
+    '#rules-grid .fade-in, #cats-grid .fade-in'
+  ).forEach(el => el.classList.add('visible'));
+});
+
+setTimeout(() => {
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+}, 50);
 }
 
 function renderRules() {
